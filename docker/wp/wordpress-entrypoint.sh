@@ -7,5 +7,6 @@ if [ ! -f /var/www/html/index.php ]; then
 fi
 
 /usr/local/bin/fix-permissions.sh
+/usr/local/bin/sync-local-plugins.sh
 
 exec docker-entrypoint.sh apache2-foreground
