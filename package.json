@@ -1,0 +1,24 @@
+{
+  "name": "rasti-theme",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass --load-path rasti-theme/sass rasti-theme/sass:rasti-theme/assets/css --style=compressed",
+    "dev": "npm-run-all --parallel sass sync",
+    "sass": "sass --load-path rasti-theme/sass --watch rasti-theme/sass:rasti-theme/assets/css --style=compressed",
+    "sync": "browser-sync start --proxy http://localhost:8080 --files \"rasti-theme/assets/css/*.css,rasti-theme/**/*.php,rasti-theme/**/*.js\" --no-open",
+    "wp:up": "docker compose up -d --build",
+    "wp:down": "docker compose down",
+    "wp:logs": "docker compose logs -f",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Root build tooling for the RastiBook WordPress theme running in Docker.",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.89.1"
+  }
+}
