@@ -10,6 +10,8 @@
     "wp:up": "docker compose up -d --build",
     "wp:down": "docker compose down",
     "wp:logs": "docker compose logs -f",
+    "db:export": "powershell -Command \"New-Item -ItemType Directory -Force database | Out-Null; docker compose exec -T db mysqldump -u root -proot wordpress | Set-Content -Encoding utf8 database/wordpress.sql\"",
+    "db:import": "powershell -Command \"Get-Content database/wordpress.sql | docker compose exec -T db mysql -u root -proot wordpress\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

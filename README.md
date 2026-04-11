@@ -1,20 +1,26 @@
 # Rasti
 
-## Quick Start
+## Швидкий старт
 
 ```bash
 npm install
-copy .env.example .env
 npm run wp:up
 npm run dev
 ```
 
-## Structure
+Налаштування автoвстановлення плагінів у `.env`, наприклад:
+
+```env
+WP_AUTO_PLUGINS=woocommerce,advanced-custom-fields
+```
+
+## Структура
 
 ```text
 docker/
   php/
 rasti-theme/
+plugins-archives/
 .gitignore
 .env.example
 docker-compose.yml
@@ -22,50 +28,74 @@ package.json
 README.md
 ```
 
-## Run Docker
+## Запуск Docker
 
 ```bash
-copy .env.example .env
 npm run wp:up
 ```
+
+Плагіни з `WP_AUTO_PLUGINS` встановлюються автоматично після встановлення WordPress у Docker.  
+Кастомні плагіни з `plugins-archives/` також встановлюються автоматично з папок або zip-архівів.
 
 WordPress: `http://localhost:8080`  
 Adminer: `http://localhost:8081`
 
 ## Frontend
 
-Install dependencies:
+Встановити залежності:
 
 ```bash
 npm install
 ```
 
-Build CSS once:
+Разова збірка CSS:
 
 ```bash
 npm run build
 ```
 
-Run watch mode with auto reload:
+Запуск watch-режиму з автооновленням:
 
 ```bash
 npm run dev
 ```
 
-For auto reload, open the BrowserSync URL shown in the terminal after `npm run dev`.
-WordPress runs on `http://localhost:8080`, but live reload works through the BrowserSync local URL.
+Для автооновлення відкривай URL BrowserSync, який з’явиться в терміналі після `npm run dev`.  
+`http://localhost:8080` — це сам WordPress, а live reload працює через BrowserSync URL.
 
-## Commands
+## Команди
 
 ```bash
 npm run wp:up
 npm run wp:down
 npm run wp:logs
+npm run db:export
+npm run db:import
 npm run build
 npm run dev
 ```
 
-## Deploy Path
+## База даних
+
+Експорт бази:
+
+```bash
+npm run db:export
+```
+
+Імпорт бази:
+
+```bash
+npm run db:import
+```
+
+Шлях до дампа:
+
+```text
+database/wordpress.sql
+```
+
+## Шлях для деплою
 
 ```text
 rasti-theme

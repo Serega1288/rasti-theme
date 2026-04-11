@@ -34,10 +34,16 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('FS_METHOD', 'direct');
+        define('WP_MEMORY_LIMIT', '256M');
       TZ: Europe/Kiev
     volumes:
       - wordpress_data:/var/www/html
       - ./rasti-theme:/var/www/html/wp-content/themes/rasti-theme
+      - ./docker/wp/wordpress-entrypoint.sh:/usr/local/bin/wordpress-entrypoint.sh:ro
+      - ./docker/wp/fix-permissions.sh:/usr/local/bin/fix-permissions.sh:ro
+    entrypoint: ["/bin/sh", "/usr/local/bin/wordpress-entrypoint.sh"]
 
   adminer:
     image: adminer:latest
@@ -50,6 +56,29 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: db
       TZ: Europe/Kiev
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    user: "0:0"
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    restart: on-failure
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WP_AUTO_PLUGINS: ${WP_AUTO_PLUGINS:-}
+      TZ: Europe/Kiev
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./rasti-theme:/var/www/html/wp-content/themes/rasti-theme
+      - ./plugins-archives:/var/www/local-plugins
+      - ./docker/wp/install-plugins.sh:/usr/local/bin/install-plugins.sh:ro
+    entrypoint: ["/bin/sh", "/usr/local/bin/install-plugins.sh"]
 
 volumes:
   db_data:

@@ -4,9 +4,6 @@
 Thumbs.db
 
 /base/
-.env
-.env.*
-!.env.example
 
 node_modules/
 **/node_modules/
@@ -15,5 +12,4 @@ vendor/
 **/vendor/
 
 docker-data/
-*.sql
-*.zip
+#*.sql
