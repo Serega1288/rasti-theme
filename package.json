@@ -1,8 +1,9 @@
 {
-  "name": "project-theme",
+  "name": "rasti-theme",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "init": "node scripts/init.js",
     "build": "sass --load-path project-theme/sass project-theme/sass:project-theme/assets/css --style=compressed",
     "dev": "npm-run-all --parallel sass sync",
     "sass": "sass --load-path project-theme/sass --watch project-theme/sass:project-theme/assets/css --style=compressed",

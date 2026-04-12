@@ -2,7 +2,7 @@
 /**
  * Main theme template.
  *
- * @package RastiBook
+ * @package ProjectTheme
  */
 
 get_header();
@@ -24,7 +24,7 @@ get_header();
         <?php endwhile; ?>
     <?php else : ?>
         <section class="no-results">
-            <h1><?php esc_html_e('No content found.', 'RastiBook'); ?></h1>
+                <h1><?php esc_html_e('No content found.', 'rasti-theme'); ?></h1>
         </section>
     <?php endif; ?>
 </main>

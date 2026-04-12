@@ -2,7 +2,7 @@
 /**
  * Theme header.
  *
- * @package RastiBook
+ * @package ProjectTheme
  */
 ?>
 <!DOCTYPE html>
@@ -50,5 +50,4 @@
         </ul>
 
     </header>
-
 

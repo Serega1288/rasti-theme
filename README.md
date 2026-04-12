@@ -1,12 +1,16 @@
-# Rasti
+# Project Starter
 
 ## Швидкий старт
 
 ```bash
 npm install
+npm run init
 npm run wp:up
 npm run dev
 ```
+
+Початкові дані для нового проєкту задаються в `init.defaults.json`.  
+Команда `npm run init` бере значення з цього файла і оновлює `.env`, `package.json` та `project-theme/style.css`.
 
 Налаштування автoвстановлення плагінів у `.env`, наприклад:
 

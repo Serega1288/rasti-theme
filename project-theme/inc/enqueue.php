@@ -1,11 +1,11 @@
 <?php
 
-function rasti_theme_enqueue_assets(): void
+function project_theme_enqueue_assets(): void
 {
     $theme_version = wp_get_theme()->get('Version');
 
     wp_enqueue_style(
-        'project-theme-main',
+        'rasti-theme-main',
         get_template_directory_uri() . '/assets/css/main.css',
         array(),
         $theme_version
@@ -20,11 +20,11 @@ function rasti_theme_enqueue_assets(): void
     );
 
     wp_enqueue_script(
-        'project-theme-main',
+        'rasti-theme-main',
         get_template_directory_uri() . '/assets/js/main.js',
         array('swup'),
         $theme_version,
         true
     );
 }
-add_action('wp_enqueue_scripts', 'rasti_theme_enqueue_assets');
+add_action('wp_enqueue_scripts', 'project_theme_enqueue_assets');
