@@ -3,7 +3,7 @@ add_action( 'after_setup_theme', 'hortiqa_theme_setup', 5 );
 function hortiqa_theme_setup() : void {
     /* 1. Підтримка перекладів */
     load_theme_textdomain(
-        'themehortiqa',                         // має збігатися з Text Domain
+        'project-themes',                         // має збігатися з Text Domain
         get_template_directory() . '/languages'   // той самий каталог, що й у style.css
     );
     add_theme_support( 'woocommerce' );
@@ -24,7 +24,8 @@ function register_my_menus() {
     register_nav_menus(
         array(
             'header-mobile-menu' => 'header mobile menu',
-            'header-menu-top' => 'header menu up',
+            'header-menu-1' => 'header menu 1 (left)',
+            'header-menu-2' => 'header menu 2 (right)',
             'footer-menu-1' => 'footer menu 1',
         )
     );

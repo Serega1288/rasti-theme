@@ -1,0 +1,46 @@
+@use "../mixins" as *;
+
+:root {
+  --gray: #7B7B7B;
+  --green: #BDFF7B;
+  --black: #1E1E1E;
+  --white: #E9E9E9;
+  --black-2: #000000;
+  --light-gray: #D9D9D9;
+  --color-logo: #8FFF68;
+  --header-height: 13.5rem;
+  @include max-width(md) {
+    --header-height: 8.5rem;
+  }
+}
+
+.t-white {
+  color: var(--white);
+}
+.t-green {
+  color: var(--green);
+}
+
+body {
+  .container {
+    --bs-gutter-x: 2.4rem;
+    //@include max-width(xl) {
+      //--bs-gutter-x: 2.4rem;
+    //}
+  }
+  .container-fluid {
+    //max-width: 1440px;
+    max-width: calc(1180px + 2.4rem * 2);
+    --bs-gutter-x: 2.4rem;
+    //@include max-width(xxl) {
+      //--bs-gutter-x: 1.6rem;
+    //}
+  }
+  .row {
+    --bs-gutter-y: 0;
+    --bs-gutter-x: 2.4rem;
+    @include max-width(xxl) {
+      //--bs-gutter-x: 0.8rem;
+    }
+  }
+}

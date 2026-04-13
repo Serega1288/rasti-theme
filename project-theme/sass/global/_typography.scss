@@ -1,0 +1,107 @@
+@use "../mixins" as *;
+
+body {
+  font-family: 'NAMU';
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 140%;
+  background-color: var(--black);
+  color: var(--white);
+  letter-spacing: 2%;
+  //&:before {
+  //
+  //  background:
+  //          url('../img/svg/bg1.svg'),
+  //          linear-gradient(180deg, #00080D 17.31%, #1E1E1E 41.83%);
+  //
+  //  fill: #1E1E1E;
+  //  background-position: top center;
+  //  background-size: 100% 5115px;
+  //  background-repeat: no-repeat;
+  //  position: absolute;
+  //  top: 0;
+  //  bottom: 0;
+  //  left: 0;
+  //  right: 0;
+  //  z-index: -1;
+  //  display: block;
+  //  content: "";
+  //}
+}
+
+a {
+  color: var(--green);
+}
+
+p {
+  margin-bottom: 0.6rem;
+  line-height: 140%;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.ml-0 { margin-left: 0 !important; }
+.mr-0 { margin-right: 0 !important; }
+
+//.fw300, .fw-300 {
+//  font-weight: 300;
+//}
+//.fw400, .fw-400 {
+//  font-weight: 400;
+//}
+//.fw500, .fw-500 {
+//  font-weight: 500;
+//}
+//.fw700, .fw-700 {
+//  font-weight: 700;
+//}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+.m-left-auto {
+  margin-left: auto !important;
+}
+.m-right-auto {
+  margin-right: auto !important;
+}
+
+
+.ts-128 { font-size: 12.8rem; line-height: 16.2rem; }
+.ts-96 { font-size: 9.6rem; line-height: 16.2rem; }
+.ts-64 { font-size: 6.4rem; } // header1
+.ts-32  { font-size: 3.2rem; } // header2
+.ts-20 { font-size: 2rem; } // body
+.ts-16 { font-size: 1.6rem; } // capt
+
+
+@include max-width(sm) {
+  .ts-sm-128 { font-size: 12.8rem; line-height: 16.2rem; }
+  .ts-sm-96 { font-size: 9.6rem; line-height: 16.2rem; }
+  .ts-sm-64 { font-size: 6.4rem; }
+  .ts-sm-32 { font-size: 3.2rem; }
+  .ts-sm-20 { font-size: 2rem; }
+  .ts-sm-16 { font-size: 1.6rem; }
+  .ts-sm-14 { font-size: 1.4rem; }
+  .ts-sm-12 { font-size: 1.2rem; }
+}
+
+.color-white-op {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.text {
+  color: var(--body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  margin-bottom: 0;
+  margin-top: 0;
+}

@@ -15,39 +15,112 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div class="site-shell">
-    <header class="site-header">
-        <div class="site-branding">
-            <a class="site-title" href="<?php echo esc_url(home_url('/')); ?>">
-                <?php bloginfo('name'); ?>
-            </a>
-            <?php if (get_bloginfo('description')) : ?>
-                <p class="site-description"><?php bloginfo('description'); ?></p>
-            <?php endif; ?>
+
+    <div class="mobile-menu anim-05 js-mobile-menu">
+        <div class="container-fluid h100">
+            <div class="box h100">
+                <?php if ( has_nav_menu( 'header-mobile-menu' ) ) : ?>
+                    <?php
+                    wp_nav_menu([
+                            'theme_location' => 'header-mobile-menu',
+                            'menu' => '',
+                            'container' => '',
+                            'container_class' => '',
+                            'container_id' => '',
+                            'menu_class' => 'menu',
+                            'menu_id' => '',
+                            'echo' => true,
+                            'fallback_cb' => false,
+                            'before' => '',
+                            'after' => '',
+                            'link_before' => '',
+                            'link_after' => '',
+                            'items_wrap' => '<div class="menu menu-2 h100 d-flex align-items-center"><ul class="anim-025 d-flex align-items-center flex-column">%3$s</ul></div>',
+                            'depth' => 0,
+                            'walker' => '',
+                    ]);
+                    ?>
+                <?php endif; ?>
+            </div>
         </div>
+    </div>
+    <header class="header">
+        <div class="header-1 anim-025 h100 line-end circle">
+            <div class="container-fluid h100">
+                <div class="box h100">
+                    <div class="row h100">
+                        <div class="col-md d-none d-md-flex align-items-center">
+                                <?php if ( has_nav_menu( 'header-menu-1' ) ) : ?>
+                                    <?php
+                                    wp_nav_menu([
+                                            'theme_location' => 'header-menu-1',
+                                            'menu' => '',
+                                            'container' => '',
+                                            'container_class' => '',
+                                            'container_id' => '',
+                                            'menu_class' => 'menu',
+                                            'menu_id' => '',
+                                            'echo' => true,
+                                            'fallback_cb' => false,
+                                            'before' => '',
+                                            'after' => '',
+                                            'link_before' => '',
+                                            'link_after' => '',
+                                            'items_wrap' => '<div class="menu menu-1"><ul class="d-flex align-items-center">%3$s</ul></div>',
+                                            'depth' => 0,
+                                            'walker' => '',
+                                    ]);
+                                    ?>
+                                <?php endif; ?>
+                        </div>
+                        <div class="col-md-auto col-12 d-flex justify-content-between align-items-end align-items-sm-center">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="logo d-flex">
+                                <svg width="220" height="34" viewBox="0 0 220 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M219.7 0.772461V32.4225H206.488V0.772461H219.7Z" fill="#BDFF7B"/>
+                                    <path d="M32.6469 0.801071C39.6361 0.743837 45.5524 6.20963 45.4604 12.7629C45.4604 15.138 44.786 17.3129 43.4066 19.2302C42.0578 21.1476 40.2798 22.607 38.0727 23.5514L45.4604 32.4225H31.3901L25.0139 24.696H13.212V32.4225H0V0.772461H32.6469V0.801071ZM13.1814 10.0443V15.4242H29.3056C30.1026 15.4242 30.8076 15.1667 31.3594 14.6516C31.9418 14.1079 32.2177 13.4783 32.2177 12.7342C32.2177 11.2176 30.9302 10.0157 29.3056 10.0157H13.1814V10.0443Z" fill="#BDFF7B"/>
+                                    <path d="M67.8681 0.801758H83.5938L101.772 32.4519H86.9044L84.2375 27.0433H67.255L64.5881 32.4519H49.7207L67.8987 0.801758H67.8681ZM71.0561 19.3168H80.3751L75.7462 9.95911L71.0868 19.3168H71.0561Z" fill="#BDFF7B"/>
+                                    <path d="M127.001 13.0206C136.443 13.4785 149.747 14.0794 149.716 22.0063C149.716 31.0491 138.619 33.1954 126.725 33.1954C114.862 33.1954 104.991 31.8218 103.734 22.0063H117.59C119.092 24.4673 122.617 25.0969 126.756 25.0969C130.894 25.0969 135.921 24.4673 135.921 22.0063C135.921 19.5452 131.814 20.4037 126.48 20.1748C117.008 19.7169 103.734 19.116 103.765 11.2178C103.765 2.17487 114.862 0 126.756 0C138.619 0.0572334 148.49 1.31637 149.747 11.2178H135.891C134.389 8.7281 130.863 8.12716 126.725 8.12716C122.587 8.12716 117.559 8.69949 117.559 11.2178C117.559 13.736 121.667 12.7917 127.001 13.0206Z" fill="#BDFF7B"/>
+                                    <path d="M170.837 32.4516V10.8459H155.111V0.830078H199.744V10.8459H184.018V32.4516H170.806H170.837Z" fill="#BDFF7B"/>
+                                </svg>
+                            </a>
 
-        <h1>header-menu-top</h1>
-        <ul>
-            <?php
-            wp_nav_menu([
-                    'theme_location' => 'header-menu-top',
-                    'menu' => '',
-                    'container' => '',
-                    'container_class' => '',
-                    'container_id' => '',
-                    'menu_class' => 'menu',
-                    'menu_id' => '',
-                    'echo' => true,
-                    'fallback_cb' => 'wp_page_menu',
-                    'before' => '',
-                    'after' => '',
-                    'link_before' => '',
-                    'link_after' => '',
-                    'items_wrap' => '%3$s',
-                    'depth' => 0,
-                    'walker' => '',
-            ]);
-            ?>
-        </ul>
-
+                            <div class="burger js-burger d-inline-flex d-md-none">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="col-md d-none d-md-flex align-items-center justify-content-end">
+                            <div class="menu menu-1">
+                                <ul class="d-flex align-items-center">
+                                    <?php if ( has_nav_menu( 'header-menu-2' ) ) : ?>
+                                        <?php
+                                        wp_nav_menu([
+                                            'theme_location' => 'header-menu-2',
+                                            'menu' => '',
+                                            'container' => '',
+                                            'container_class' => '',
+                                            'container_id' => '',
+                                            'menu_class' => 'menu',
+                                            'menu_id' => '',
+                                            'echo' => true,
+                                            'fallback_cb' => false,
+                                            'before' => '',
+                                            'after' => '',
+                                            'link_before' => '',
+                                            'link_after' => '',
+                                            'items_wrap' => '%3$s',
+                                            'depth' => 0,
+                                            'walker' => '',
+                                        ]);
+                                        ?>
+                                    <?php endif; ?>
+                                    <?php project_theme_render_header_cart_count(); ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-

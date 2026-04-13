@@ -3,12 +3,16 @@
 function project_theme_enqueue_assets(): void
 {
     $theme_version = wp_get_theme()->get('Version');
+    $css_path      = get_template_directory() . '/assets/css/main.css';
+    $js_path       = get_template_directory() . '/assets/js/main.js';
+    $css_version   = file_exists( $css_path ) ? filemtime( $css_path ) : $theme_version;
+    $js_version    = file_exists( $js_path ) ? filemtime( $js_path ) : $theme_version;
 
     wp_enqueue_style(
         'rasti-theme-main',
         get_template_directory_uri() . '/assets/css/main.css',
         array(),
-        $theme_version
+        $css_version
     );
 
     wp_enqueue_script(
@@ -22,8 +26,8 @@ function project_theme_enqueue_assets(): void
     wp_enqueue_script(
         'rasti-theme-main',
         get_template_directory_uri() . '/assets/js/main.js',
-        array('swup'),
-        $theme_version,
+        array( 'jquery', 'swup' ),
+        $js_version,
         true
     );
 }

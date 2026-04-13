@@ -1,0 +1,61 @@
+@use '../mixins' as *;
+
+.burger {
+  position: relative;
+  width: 4.5rem;
+  height: 1.9rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  @include max-width(sm) {
+    margin-bottom: 2rem;
+  }
+  span {
+    position: absolute;
+    left: 0;
+    width: 4.5rem;
+    height: 0.3rem;
+    background: #BDFF7B;
+    transform-origin: center;
+    box-shadow: 0 0 0.8rem rgba(189, 255, 123, 0.18);
+
+    transition:
+            transform 0.35s ease,
+            opacity 0.25s ease,
+            top 0.35s ease;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 0.8rem;
+    }
+
+    &:nth-child(3) {
+      top: 1.6rem;
+    }
+  }
+
+  &.is-active {
+    span {
+      &:nth-child(1) {
+        top: 8px;
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      &:nth-child(3) {
+        top: 8px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

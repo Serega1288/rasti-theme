@@ -5,7 +5,7 @@
  * @package ProjectTheme
  */
 ?>
-    <footer style="background-color: #f8f9fa; padding: 20px; text-align: center;" class="site-footer">
+    <footer class="site-footer">
 
         <h1>footer-menu-1</h1>
         <ul>

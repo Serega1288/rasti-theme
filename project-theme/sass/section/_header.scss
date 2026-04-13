@@ -1,0 +1,98 @@
+@use "../mixins" as *;
+
+//***********
+.header {
+  height: 0;
+  z-index: 10;
+  position: relative;
+  .header-1 {
+    max-height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  .box {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  &.scroll {
+    .header-1 {
+      max-height: 8rem;
+      .box {
+        &:before {
+          content: "";
+          z-index: -1;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
+          //background: rgba(0, 8, 13, 0.4);
+        }
+      }
+      //background-color: var(--black);
+    }
+  }
+  .logo {
+    @include max-width(sm) {
+      margin-bottom: 2rem;
+    }
+    svg {
+      width: 22rem;
+      height: 3.4rem;
+      @include max-width(sm) {
+        width: 17rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background-color: var(--black);
+  height: 0;
+  overflow: hidden;
+  ul {
+    opacity: 0;
+  }
+  .box {
+    padding-top: var(--header-height);
+    padding-bottom: var(--header-height);
+    border-left: .22rem dashed var(--green);
+    border-right: .22rem dashed var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 2.4rem;
+      display: flex;
+      height: .22rem;
+      border-bottom: .22rem solid var(--green);
+    }
+  }
+  &.is-active {
+    height: 100vh;
+    ul {
+      opacity: 1;
+    }
+  }
+  .mobile-menu-inner {
+    max-height: var(--header-height);
+  }
+}
+//***********

@@ -1,19 +1,26 @@
-// hortiqa: main.scss
+// rasti: main.scss
 
 // 1. Змінні
-@use 'fonts';
-@use 'root';
+@use 'global/fonts';
+@use 'base/root';
 
 // 2. сітка
-@use 'cols';
+@use 'global/reset';
+@use 'global/cols';
 
 // 3. global
-@use 'helpers';
-@use 'global-section';
+@use 'global/typography';
+@use 'base/helpers';
+@use 'section/global-section';
 
+// 4. Компонент
+@use 'component/animate';
+@use 'component/menu';
+@use 'component/btn';
+@use 'component/form';
 
-// 4. Базові стилі
-//@use 'base/reset';
+//5. Секції
+@use 'section/header';
 //@use 'base/helpers';
 //@use 'base/typography';
 //@use 'base/fancybox';

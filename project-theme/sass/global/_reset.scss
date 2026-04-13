@@ -1,0 +1,90 @@
+@use '../mixins' as *;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+.body {
+  @include max-width(md) {
+    overflow: hidden;
+  }
+}
+body, .wrapScroll {
+  scroll-behavior: smooth;
+}
+
+.ovh {
+  overflow: hidden;
+}
+
+* {
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+  @include min-width(sm) {
+    font-size: 48%;
+  }
+
+  @include min-width(md) {
+    font-size: 48%;
+  }
+
+  @include min-width(lg) {
+    font-size: 55%;
+  }
+
+  @include min-width(xl) {
+    font-size: 62.5%;
+  }
+
+  @include min-width(xxl) {
+    font-size: 62.5%;
+  }
+}
+
+/* Ширина всього скролбара */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Фон (Track) */
+::-webkit-scrollbar-track {
+  background: var(--black);
+  //border-radius: 10px;
+}
+
+/* Повзунок (Thumb) */
+::-webkit-scrollbar-thumb {
+  background: var(--green);
+  //border-radius: 10px;
+  //border: 2px solid var(--black); /* Створює ефект відступу */
+}
+
+/* Ефект при наведенні */
+::-webkit-scrollbar-thumb:hover {
+  background: #5849be;
+}
+
+
+//body::-webkit-scrollbar, html::-webkit-scrollbar, .wrapPop::-webkit-scrollbar  {
+//  width: 0;
+//  height: 0;
+//}
+///* width */
+//::-webkit-scrollbar {
+//  width: 0.4rem;
+//  height: 0.4rem;
+//}
+//// #86644B
+///* Track */
+//::-webkit-scrollbar-track {
+//  background-color: var(--slgray);
+//}
+//
+///* Handle */
+//::-webkit-scrollbar-thumb {
+//  background: var(--blue);
+//  //background: var(--lgray);
+//}
