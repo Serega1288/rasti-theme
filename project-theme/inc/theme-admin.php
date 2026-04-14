@@ -26,7 +26,7 @@ function register_my_menus() {
             'header-mobile-menu' => 'header mobile menu',
             'header-menu-1' => 'header menu 1 (left)',
             'header-menu-2' => 'header menu 2 (right)',
-            'footer-menu-1' => 'footer menu 1',
+            'footer-menu' => 'footer menu',
         )
     );
 }

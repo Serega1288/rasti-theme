@@ -31,6 +31,9 @@ body {
 
 a {
   color: var(--green);
+  &:hover {
+     color: var(--white);
+  }
 }
 
 p {
@@ -79,6 +82,8 @@ p {
 .ts-32  { font-size: 3.2rem; } // header2
 .ts-20 { font-size: 2rem; } // body
 .ts-16 { font-size: 1.6rem; } // capt
+.ts-12 { font-size: 1.2rem; line-height: 1.3rem; }
+.ts-8 { font-size: 0.8rem; line-height: 1.3rem; }
 
 
 @include max-width(sm) {
@@ -90,6 +95,7 @@ p {
   .ts-sm-16 { font-size: 1.6rem; }
   .ts-sm-14 { font-size: 1.4rem; }
   .ts-sm-12 { font-size: 1.2rem; }
+  .ts-sm-8 { font-size: 0.8rem; line-height: 1.3rem; }
 }
 
 .color-white-op {

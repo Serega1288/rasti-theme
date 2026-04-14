@@ -70,6 +70,307 @@ p {
   margin-top: 0;
 }
 
+.wrap-decore {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  .d-minus, .d-plus {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    @include max-width(sm) {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+  .d-minus, .d-plus {
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      height: 0.3rem;
+      width: 100%;
+      margin: auto;
+      background-color: var(--green);
+      @include max-width(sm) {
+        height: 0.3rem;
+      }
+    }
+  }
+  .d-minus {
+    &:after {
+      display: none;
+    }
+  }
+  .d-plus {
+    &:after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &.wrap-decore-1 {
+    .decore {
+      position: absolute;
+      z-index: 1;
+    }
+    .decore-1 {
+      top: 4rem;
+      left: 10rem;
+      @include max-width(sm) {
+        top: 3.4rem;
+        left: 9.5rem;
+      }
+    }
+    .decore-2 {
+      top: 10rem;
+      left: 25.5rem;
+      @include max-width(sm) {
+        top: 29rem;
+        left: 4rem;
+      }
+    }
+    .decore-3 {
+      left: 15.2rem;
+      bottom: 30rem;
+      @include max-width(sm) {
+        top: 22rem;
+        left: 2rem;
+      }
+    }
+    .decore-4 {
+      left: 30rem;
+      bottom: 25rem;
+      @include max-width(sm) {
+        left: 4rem;
+        bottom: 13rem;
+      }
+    }
+    .decore-5 {
+      left: 5rem;
+      bottom: 16rem;
+      @include max-width(sm) {
+        left: -3rem;
+        bottom: 7rem;
+      }
+    }
+
+    .decore-6 {
+      right: -8rem;
+      bottom: 30rem;
+      @include max-width(sm) {
+        left: 17rem;
+        right: auto;
+        bottom: 3rem;
+      }
+    }
+
+    .decore-7 {
+      right: 0rem;
+      bottom: 16rem;
+      @include max-width(sm) {
+        left: 29rem;
+        right: auto;
+        bottom: 9rem;
+      }
+    }
+  }
+}
+
+/* start: decore star animations */
+.wrap-decore {
+  .decore {
+    transform-origin: center;
+    will-change: transform, opacity, filter;
+    filter: drop-shadow(0 0 0.6rem rgba(189, 255, 123, 0.18));
+    animation: decoreStarPulse 6.5s ease-in-out infinite;
+  }
+
+  .decore-1 {
+    animation:
+      decoreStarPulse 7.2s ease-in-out infinite,
+      decoreStarFloatSoft 9s ease-in-out infinite;
+  }
+
+  .decore-2 {
+    animation:
+      decoreStarPulse 5.8s ease-in-out infinite,
+      decoreStarDriftVertical 8.4s ease-in-out infinite;
+  }
+
+  .decore-3 {
+    animation:
+      decoreStarPulse 7.8s ease-in-out infinite,
+      decoreStarBlinkRare 5.4s ease-in-out infinite;
+  }
+
+  .decore-4 {
+    animation:
+      decoreStarPulse 6.8s ease-in-out infinite,
+      decoreStarArc 10.5s ease-in-out infinite;
+  }
+
+  .decore-5 {
+    animation:
+      decoreStarPulse 8.2s ease-in-out infinite,
+      decoreStarComet 11.5s ease-in-out infinite;
+  }
+
+  .decore-6 {
+    animation:
+      decoreStarPulse 6.2s ease-in-out infinite,
+      decoreStarNearBreath 7.4s ease-in-out infinite;
+  }
+
+  .decore-7 {
+    animation:
+      decoreStarPulse 7s ease-in-out infinite,
+      decoreStarSignal 9.8s ease-in-out infinite;
+  }
+}
+
+@keyframes decoreStarPulse {
+  0%, 100% {
+    opacity: 0.38;
+    filter: drop-shadow(0 0 0.5rem rgba(189, 255, 123, 0.10));
+  }
+  30% {
+    opacity: 0.72;
+    filter: drop-shadow(0 0 0.8rem rgba(189, 255, 123, 0.22));
+  }
+  55% {
+    opacity: 1;
+    filter: drop-shadow(0 0 1.3rem rgba(189, 255, 123, 0.42));
+  }
+  75% {
+    opacity: 0.62;
+    filter: drop-shadow(0 0 0.7rem rgba(189, 255, 123, 0.18));
+  }
+}
+
+@keyframes decoreStarFloatSoft {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.96);
+  }
+  50% {
+    transform: translate3d(0.3rem, -0.4rem, 0) scale(1);
+  }
+}
+
+@keyframes decoreStarDriftVertical {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -0.9rem, 0);
+  }
+}
+
+@keyframes decoreStarBlinkRare {
+  0%, 74%, 100% {
+    opacity: 0.42;
+    transform: scale(0.98);
+  }
+  78% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  82% {
+    opacity: 0.3;
+    transform: scale(0.94);
+  }
+  86% {
+    opacity: 0.92;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes decoreStarArc {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  35% {
+    transform: translate3d(0.4rem, -0.3rem, 0) rotate(2deg);
+  }
+  70% {
+    transform: translate3d(-0.3rem, 0.4rem, 0) rotate(-1deg);
+  }
+}
+
+@keyframes decoreStarComet {
+  0%, 82%, 100% {
+    transform: translate3d(0, 0, 0) scaleX(1);
+    opacity: 0.36;
+    filter: drop-shadow(0 0 0.5rem rgba(189, 255, 123, 0.10));
+  }
+  86% {
+    transform: translate3d(0.6rem, -0.2rem, 0) scaleX(1.5);
+    opacity: 1;
+    filter: drop-shadow(0 0 1.4rem rgba(189, 255, 123, 0.5));
+  }
+  90% {
+    transform: translate3d(-0.2rem, 0.1rem, 0) scaleX(0.92);
+    opacity: 0.56;
+    filter: drop-shadow(0 0 0.8rem rgba(189, 255, 123, 0.18));
+  }
+}
+
+@keyframes decoreStarNearBreath {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  35% {
+    transform: translate3d(-0.3rem, -0.2rem, 0) scale(1.04);
+  }
+  68% {
+    transform: translate3d(0.2rem, 0.3rem, 0) scale(0.97);
+  }
+}
+
+@keyframes decoreStarSignal {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.42;
+  }
+  22% {
+    transform: translate3d(0.15rem, -0.15rem, 0) rotate(2deg);
+    opacity: 0.75;
+  }
+  26% {
+    transform: translate3d(0.3rem, -0.3rem, 0) rotate(4deg);
+    opacity: 1;
+  }
+  32% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.48;
+  }
+  70% {
+    transform: translate3d(-0.2rem, 0.2rem, 0) rotate(-2deg);
+    opacity: 0.68;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap-decore {
+    .decore,
+    .decore-1,
+    .decore-2,
+    .decore-3,
+    .decore-4,
+    .decore-5,
+    .decore-6,
+    .decore-7 {
+      animation: none;
+    }
+  }
+}
+/* end: decore star animations */
+
 .lines {
   position: absolute;
   top: 0;

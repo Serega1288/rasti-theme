@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .menu {
   a {
     text-decoration: none;
@@ -6,6 +8,9 @@
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+  li {
+    display: flex;
   }
   &.menu-2 {
     li {
@@ -39,10 +44,59 @@
       position: relative;
     }
   }
-
-  &.menu-1, &.menu-2 {
-
+  &.menu-2 {
+    li {
+      margin-left: 1.5rem;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+    a {
+      text-transform: uppercase;
+      color: var(--green);
+      font-size: 1.6rem;
+      text-decoration: underline;
+      @include max-width(sm) {
+        font-size: 1.2rem;
+      }
+    }
   }
+
+  &.menu-3 {
+    &.remove-ml li {
+      margin-left: 0 !important;
+    }
+    li {
+      margin-left: 1.5rem;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+    a {
+      text-transform: uppercase;
+      color: var(--green);
+      font-size: 1.2rem;
+      @include max-width(sm) {
+        font-size: 0.8rem;
+        line-height: 2;
+      }
+    }
+  }
+
+  &.menu-4 {
+    li {
+      margin-bottom: 1.4rem;
+      margin-top: 1.4rem;
+    }
+    a {
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .js-active {
+      color: var(--green) !important;
+    }
+  }
+
 }
 
 .brackets {
@@ -81,3 +135,4 @@
     margin-left: 0.5rem;
   }
 }
+

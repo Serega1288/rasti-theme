@@ -1,0 +1,125 @@
+@use "../mixins" as *;
+
+.footer {
+  //margin-top: 6rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-top: 27rem;
+  padding-bottom: 6rem;
+  position: relative;
+  @include max-width(sm) {
+    padding-top: 14rem;
+    padding-bottom: 3.2rem;
+  }
+  @media (max-width: 400px){
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .wrap-logo {
+    margin: 0 auto 5.4rem;
+    svg {
+      max-width: 54rem;
+      display: block;
+    }
+  }
+  .footer-fon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    overflow: hidden;
+    img {
+      margin-top: 7rem;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      /* start: footer background animation */
+      transform-origin: center;
+      will-change: transform, filter;
+      animation: footerFonDrift 24s ease-in-out infinite alternate;
+      /* end: footer background animation */
+      @include max-width(sm) {
+        margin-top: 1rem;
+        width: 120%;
+        left: -10%;
+        height: 100%;
+        position: relative;
+      }
+    }
+  }
+}
+
+/* start: footer background animation */
+@keyframes footerFonDrift {
+  0% {
+    transform: translate3d(-3.6rem, 0, 0) scale(1.055);
+  }
+  50% {
+    transform: translate3d(2.4rem, -1.4rem, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(4rem, 1.1rem, 0) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer {
+    .footer-fon img {
+      animation: none;
+      transform: none;
+    }
+  }
+}
+/* end: footer background animation */
+
+.wrap-social-media {
+  margin-bottom: 15rem;
+  max-width: 54rem;
+  margin-left: auto;
+  margin-right: auto;
+  li {
+    margin: 0 !important;
+  }
+  @include max-width(sm) {
+    margin-bottom: 8rem;
+  }
+}
+.wrap-pay-img {
+  margin-bottom: 1rem;
+  @include max-width(sm) {
+    margin-bottom: 0;
+  }
+  a {
+    display: flex;
+  }
+  li {
+    margin-left: 0.5rem;
+    @include max-width(sm) {
+      margin-left: 0;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  @include max-width(md) {
+    margin-bottom: 0;
+    img {
+      width: 6rem;
+    }
+  }
+  @include max-width(sm) {
+    img {
+      width: 30px;
+    }
+  }
+}
+.copy-right {
+  margin-top: 3.5rem;
+  line-height: 1.6rem;
+  @include max-width(sm) {
+    letter-spacing: 0.1px !important;
+  }
+}

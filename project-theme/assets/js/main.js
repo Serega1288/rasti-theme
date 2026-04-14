@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
         $('.js-active').removeClass('js-active')
         $(this).addClass('js-active');
 
-        if ( $(this).parents('.menu').hasClass('menu-2') ) {
+        if ( $(this).parents('.menu').hasClass('menu-4') ) {
             setTimeout(function () {
                 $('body').removeClass('ovh');
                 $('.js-burger').removeClass('is-active');

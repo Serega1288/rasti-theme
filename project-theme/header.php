@@ -35,7 +35,7 @@
                             'after' => '',
                             'link_before' => '',
                             'link_after' => '',
-                            'items_wrap' => '<div class="menu menu-2 h100 d-flex align-items-center"><ul class="anim-025 d-flex align-items-center flex-column">%3$s</ul></div>',
+                            'items_wrap' => '<div class="menu menu-4 h100 d-flex align-items-center"><ul class="anim-025 d-flex align-items-center flex-column">%3$s</ul></div>',
                             'depth' => 0,
                             'walker' => '',
                     ]);

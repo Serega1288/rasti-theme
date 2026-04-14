@@ -1,6 +1,8 @@
 .anim-text-hover,
-.menu.menu-1 a:not(.brackets),
-.menu.menu-2 a
+.menu.menu-1 a,
+.menu.menu-2 a,
+.menu.menu-3 a,
+.menu.menu-4 a
 {
   cursor: pointer;
   background: linear-gradient(90deg, #ffffff 50%, var(--green) 50%);
@@ -13,6 +15,15 @@
   &:hover, &.js-active {
     background-position: right;
   }
+}
+.menu.menu-2 a,
+.menu.menu-3 a {
+  background: linear-gradient(90deg, var(--green) 50%, var(--white) 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.6s ease;
 }
 
 .send-loader,

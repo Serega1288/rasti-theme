@@ -41,7 +41,17 @@ get_header('stub');
                                 <div class="line line-2"></div>
                                 <div class="line line-3"></div>
                             </div>
-                            <div class="box-1">
+
+                            <div class="box-1 pos">
+                                <div class="wrap-decore wrap-decore-1">
+                                    <div class="decore decore-1 d-minus"></div>
+                                    <div class="decore decore-2 d-plus"></div>
+                                    <div class="decore decore-3 d-minus"></div>
+                                    <div class="decore decore-4 d-minus"></div>
+                                    <div class="decore decore-5 d-minus"></div>
+                                    <div class="decore decore-6 d-minus"></div>
+                                    <div class="decore decore-7 d-plus"></div>
+                                </div>
                                 <?php
                                 $title = get_field('big_title');
                                 if ( $title ) : ?>
