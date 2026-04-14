@@ -12,6 +12,28 @@ get_header('stub');
         <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
                 <section class="section section-stub section-first pos line-end">
+                    <?php
+                    $fon_block        = get_field('fon_block');
+                    $fon_block_mobile = get_field('fon_block_mobile');
+                    $fon_desktop_url  = $fon_block['url'] ?? '';
+                    $fon_mobile_url   = $fon_block_mobile['url'] ?? '';
+                    $fon_alt          = $fon_block['alt'] ?? $fon_block_mobile['alt'] ?? get_the_title();
+
+                    if ( $fon_desktop_url || $fon_mobile_url ) : ?>
+                    <div class="fon" aria-hidden="true">
+                        <picture>
+                            <?php if ( $fon_mobile_url ) : ?>
+                                <source media="(max-width: 575px)" srcset="<?php echo esc_url( $fon_mobile_url ); ?>">
+                            <?php endif; ?>
+                            <img
+                                src="<?php echo esc_url( $fon_desktop_url ?: $fon_mobile_url ); ?>"
+                                alt="<?php echo esc_attr( $fon_alt ); ?>"
+                                loading="eager"
+                                decoding="async"
+                            >
+                        </picture>
+                    </div>
+                    <?php endif; ?>
                     <div class="container-fluid">
                         <div class="box pos">
                             <div class="lines lines-1">

@@ -32,3 +32,22 @@ function project_theme_enqueue_assets(): void
     );
 }
 add_action('wp_enqueue_scripts', 'project_theme_enqueue_assets');
+
+function project_theme_dequeue_waitlist_styles(): void
+{
+    $style_handles = [
+        'xoo-wl-style',
+        'xoo-wl-fonts',
+        'xoo-aff-style',
+        'xoo-aff-font-awesome5',
+        'xoo-aff-flags',
+        'jquery-ui-css',
+        'xoo-select2',
+    ];
+
+    foreach ( $style_handles as $handle ) {
+        wp_dequeue_style( $handle );
+        wp_deregister_style( $handle );
+    }
+}
+add_action('wp_enqueue_scripts', 'project_theme_dequeue_waitlist_styles', 999);

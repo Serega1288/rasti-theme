@@ -12,7 +12,10 @@
   @include max-width(md) {
     --header-height: 8.5rem;
   }
-}
+  @media (max-height: 600px) {
+    --header-height: 8.5rem;
+  }
+ }
 
 .t-white {
   color: var(--white);

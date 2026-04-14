@@ -89,6 +89,10 @@ function brackets_should_handle_maintenance_request(): bool {
         return false;
     }
 
+    if ( is_user_logged_in() ) {
+        return false;
+    }
+
     if ( wp_doing_ajax() || wp_doing_cron() ) {
         return false;
     }

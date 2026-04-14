@@ -23,6 +23,10 @@ body, .wrapScroll {
 
 html {
   font-size: 62.5%;
+  @media (max-width: 360px) {
+    font-size: 58%;
+  }
+
   @include min-width(sm) {
     font-size: 48%;
   }

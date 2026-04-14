@@ -29,6 +29,14 @@ function parseDefaults() {
   return JSON.parse(readText(defaultsPath));
 }
 
+function resolveSiteHost(defaults) {
+  return defaults.siteHost || `${defaults.siteName}.localhost`;
+}
+
+function resolveDevSiteUrl(defaults) {
+  return defaults.devSiteUrl || `http://${resolveSiteHost(defaults)}:${defaults.wordpressPort}`;
+}
+
 function replaceOrAppend(content, key, value) {
   const pattern = new RegExp(`^${key}=.*$`, 'm');
   if (pattern.test(content)) {
@@ -41,10 +49,14 @@ function replaceOrAppend(content, key, value) {
 function updateEnv(defaults) {
   const existing = fs.existsSync(envPath) ? readText(envPath) : '';
   let next = existing || '';
+  const siteHost = resolveSiteHost(defaults);
+  const devSiteUrl = resolveDevSiteUrl(defaults);
 
   next = replaceOrAppend(next, 'COMPOSE_PROJECT_NAME', defaults.composeProjectName);
   next = replaceOrAppend(next, 'PROJECT_NAME', defaults.composeProjectName);
   next = replaceOrAppend(next, 'SITE_NAME', defaults.siteName);
+  next = replaceOrAppend(next, 'SITE_HOST', siteHost);
+  next = replaceOrAppend(next, 'DEV_SITE_URL', devSiteUrl);
   next = replaceOrAppend(next, 'THEME_NAME', defaults.themeName);
   next = replaceOrAppend(next, 'THEME_TEXT_DOMAIN', defaults.themeTextDomain);
   next = replaceOrAppend(next, 'WORDPRESS_PORT', defaults.wordpressPort);
@@ -56,9 +68,13 @@ function updateEnv(defaults) {
 
 function updatePackageJson(defaults) {
   const pkg = JSON.parse(readText(packageJsonPath));
+  const siteHost = resolveSiteHost(defaults);
+  const devSiteUrl = resolveDevSiteUrl(defaults);
+
   pkg.name = defaults.packageName;
   pkg.version = defaults.packageVersion;
   pkg.description = defaults.packageDescription;
+  pkg.scripts.sync = `browser-sync start --proxy ${devSiteUrl} --host ${siteHost} --port 3000 --files "project-theme/assets/css/*.css,project-theme/**/*.php,project-theme/**/*.js,plugins-local/**/*.php,plugins-local/**/*.js,plugins-local/**/*.css" --no-open`;
   writeText(packageJsonPath, `${JSON.stringify(pkg, null, 2)}\n`);
 
   if (fs.existsSync(packageLockPath)) {

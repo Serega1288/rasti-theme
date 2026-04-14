@@ -1,6 +1,8 @@
 {
   "composeProjectName": "rasti",
   "siteName": "rasti",
+  "siteHost": "localhost",
+  "devSiteUrl": "http://localhost:8080",
   "themeName": "Rasti Theme",
   "themeTextDomain": "rasti-theme",
   "themeVersion": "0.1.0",

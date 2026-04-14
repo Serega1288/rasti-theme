@@ -10,4 +10,4 @@ require_once get_stylesheet_directory() . '/inc/acf.php';
 // вукомерс
 require_once get_stylesheet_directory() . '/inc/woo.php';
 // режим заглушки
-//require_once get_stylesheet_directory() . '/brackets.php';
+require_once get_stylesheet_directory() . '/brackets.php';

@@ -7,7 +7,7 @@
     "build": "sass --load-path project-theme/sass project-theme/sass:project-theme/assets/css --style=compressed",
     "dev": "npm-run-all --parallel sass sync",
     "sass": "sass --load-path project-theme/sass --watch project-theme/sass:project-theme/assets/css --style=compressed",
-    "sync": "browser-sync start --proxy http://localhost:8080 --files \"project-theme/assets/css/*.css,project-theme/**/*.php,project-theme/**/*.js,plugins-local/**/*.php,plugins-local/**/*.js,plugins-local/**/*.css\" --no-open",
+    "sync": "browser-sync start --proxy http://localhost:8080 --host localhost --port 3000 --files \"project-theme/assets/css/*.css,project-theme/**/*.php,project-theme/**/*.js,plugins-local/**/*.php,plugins-local/**/*.js,plugins-local/**/*.css\" --no-open",
     "wp:up": "docker compose up -d --build",
     "wp:down": "docker compose down",
     "wp:purge": "powershell -NoProfile -Command \"$confirm = Read-Host 'Видалити контейнери, томи та локальні image цього проєкту? Введи так'; if ($confirm -ne 'так') { Write-Host 'Скасовано.'; exit 1 }; docker compose down -v --remove-orphans --rmi local\"",
