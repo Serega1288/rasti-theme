@@ -1,5 +1,23 @@
 @use '../mixins' as *;
 
+.xoo-wl-form {
+  input {
+    height: 4.8rem;
+    border: 1px solid var(--green);
+    padding: 0 12px;
+    background: none;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24px;
+    color: var(--green);
+    &::placeholder {
+      color: var(--white);
+      text-transform: uppercase;
+    }
+  }
+}
+
 .form {
   &.form-custom-xoo-wl-form {
     display: flex;
@@ -14,6 +32,12 @@
     }
     .xoo-wl-form {
       position: relative;
+      input {
+        height: 4.8rem;
+        border: 1px solid var(--green);
+        padding: 0 12px;
+        background: none;
+      }
       &:before {
         content: "";
         position: absolute;
@@ -99,19 +123,34 @@
         text-shadow: none;
         box-shadow: none;
         position: relative;
+        &:not(.xoo-wl-processing):hover, &:not(.xoo-wl-processing):focus {
+          background-color: var(--green);
+          color: var(--black-2);
+          &:before, &:after {
+            //background-color: var(--white);
+            filter: brightness(0);
+           }
+        }
         @include max-width(sm) {
           width: calc(100% - 3rem * 2);
           margin: 1.5rem auto 0;
           background-color: var(--black);
           font-size: 1.2rem;
           letter-spacing: 0.24px;
+          height: 4.2rem;
         }
         &.xoo-wl-processing {
-          width: 5rem;
-          padding: 0 !important;
+          //width: 5rem;
+          //padding: 0 !important;
           font-size: 0 !important;
           &:before, &:after {
-            display: none;
+            //display: none;
+            width: 100%;
+            height: 100%;
+          }
+          &:before {
+
+            //content: "Відправка...";
           }
           i {
             position: absolute;
@@ -121,14 +160,14 @@
             right: 0;
           }
         }
-        &:before , &:after {
+        &:not(.xoo-wl-processing):before , &:not(.xoo-wl-processing):after {
           content: "";
           position: absolute;
           display: flex;
           width: 3rem;
           height: 100%;
         }
-        &:before {
+        &:not(.xoo-wl-processing):before {
           content: "";
           width: 5rem;
           background-image: url("../img/svg/line-btn.svg");
@@ -139,7 +178,7 @@
           top: 0;
           right: 0;
         }
-        &:after {
+        &:not(.xoo-wl-processing):after {
           content: "";
           width: 1rem;
           height: 1rem;
@@ -153,6 +192,99 @@
       }
     }
   }
+  &.form-1 {
+    .row {
+      --bs-gutter-y: -2rem !important;
+      --bs-gutter-x: 1rem !important;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    .wcus-checkout-fields {
+      h3 {
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        letter-spacing: 0.32px;
+        margin-bottom: 2rem;
+        margin-top: 4rem;
+        color: var(--green);
+        @include max-width(sm) {
+          font-size: 1.2rem;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+        }
+        &:before {
+          content: "2. ";
+        }
+      }
+    }
+    input:not([type="radio"]):not([type="checkbox"]), select {
+      width: 100%;
+      height: 4rem;
+      background: none;
+      border: 1px solid var(--green);
+      padding: 0 1.2rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.24px;
+      color: var(--white);
+      @include max-width(sm) {
+        font-size: 1rem;
+      }
+      &::placeholder {
+        color: var(--white);
+        text-transform: uppercase;
+      }
+    }
+    .select2-container--default {
+      .select2-selection--single {
+        background-color: rgba(0,0,0,0);
+        border: 1px solid var(--green);
+        border-radius: 0;
+        height: 4rem;
+        .select2-selection__rendered {
+          line-height: 4rem;
+          color: var(--white);
+          padding-left: 1.2rem;
+          font-size: 1.2rem;
+          letter-spacing: 0.24px;
+          text-transform: uppercase;
+          @include max-width(sm) {
+            font-size: 1rem;
+          }
+        }
+        .select2-selection__arrow {
+          height: 4rem;
+          margin-right: 1.2rem;
+          @include max-width(sm) {
+            margin-right: 0.5rem;
+          }
+          &:before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 0.75rem solid transparent;
+            border-right: 0.75rem solid transparent;
+            border-top: 1rem solid var(--green);
+            position: absolute;
+            top: -0.2rem;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            @include max-width(sm) {
+              border-left: 0.5rem solid transparent;
+              border-right: 0.5rem solid transparent;
+              border-top: 0.75rem solid var(--green);
+            }
+          }
+          b {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }
 .xoo-wl-popup {
   display: none !important;
@@ -162,4 +294,150 @@
 }
 .xoo-wl-form {
   //display: flex !important;
+}
+
+
+.select2-dropdown {
+  background-color: var(--black) !important;
+  color: var(--white) !important;
+  border-color: var(--green) !important;
+  .select2-results__option--highlighted[aria-selected],
+  .select2-results__option--highlighted[data-selected] {
+    background-color: var(--green);
+    color: var(--black-2);
+  }
+  .select2-results__option[aria-selected=true],
+  .select2-results__option[data-selected=true] {
+    background-color: var(--block);
+    color: var(--green);
+  }
+  .select2-search--dropdown .select2-search__field {
+    background-color: var(--black);
+    border: 1px solid var(--green);
+    border-radius: 0;
+    height: 4rem;
+    color: var(--green);
+    padding: 0 1.2rem;
+  }
+}
+
+.zen-ui-select__value {
+  position: relative;
+  padding: 9px 28px 9px 12px !important;
+  background: rgba(0,0,0,0);
+  border: 1px solid var(--green);
+  color: var(--white);
+  font-size: 1.2rem;
+  height: 4rem;
+  text-transform: uppercase;
+  @include max-width(sm) {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  &.disabled {
+    background: rgba(0,0,0,0);
+    color: var(--green);
+  }
+  &:hover {
+    background: rgba(0,0,0,0);
+    color: var(--white);
+  }
+  &:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: .75rem solid rgba(0, 0, 0, 0);
+    border-right: .75rem solid rgba(0, 0, 0, 0);
+    border-top: 1rem solid var(--green);
+    position: absolute;
+    top: -0.2rem;
+    bottom: 0;
+    right: 1.5rem;
+    margin: auto;
+    @include max-width(sm) {
+      right: 1rem;
+      border-left: .50rem solid rgba(0, 0, 0, 0);
+      border-right: .50rem solid rgba(0, 0, 0, 0);
+      border-top: 0.75rem solid var(--green);
+    }
+  }
+}
+
+.zen-ui-select__dropdown {
+  background: var(--green);
+  background: var(--black);
+}
+.zen-ui-select__option {
+  //color: var(--green);
+  color: var(--white);
+}
+.zen-ui-select__dropdown-container {
+  .zen-ui-select__options {
+    border: 1px solid var(--green);
+  }
+  .zen-ui-select__option--current {
+    background: var(--black);
+  }
+}
+
+.zen-ui-select__option:not(.zen-ui-select__option--disabled):not(.zen-ui-select__option--current):hover {
+  background: var(--black);
+  color: var(--green);
+}
+
+.zen-ui-select__search-input {
+  padding: 4px 8px !important;
+  background: var(--black) !important;
+  border: 1px solid var(--green) !important;
+  color: var(--white) !important;
+  font-size: 1.2rem !important;
+  height: 4rem !important;
+  text-transform: uppercase !important;
+  &::placeholder {
+    color: var(--white);
+  }
+}
+.zen-ui-select__value>svg {
+  display: none !important;
+}
+
+.zen-ui-select__dropdown-container .zen-ui-select__option--current {
+  background: var(--black);
+  color: var(--green);
+}
+.zen-ui-select__search {
+  border-color: var(--green);
+}
+
+.wcus-checkout-fields {
+  label {
+    display: none;
+  }
+  & > div {
+    &:before {
+      background-color: var(--black);
+      opacity: 0.6;
+    }
+  }
+}
+
+
+#order_review_heading {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  @include max-width(sm) {
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@include max-width(sm) {
+  .woocommerce-terms-and-conditions-checkbox-text {
+    font-size: 1rem;
+  }
+  .woocommerce-billing-fields > h3 {
+    font-size: 1.2rem;
+  }
 }

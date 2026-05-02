@@ -8,16 +8,16 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php include 'head.php'; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<?php include 'preloader.php'; ?>
 <div class="site-shell">
 
     <header class="header">
-        <div class="header-1 anim-025 h100 line-end circle">
+        <div class="header-1 anim-025 h100 line-en d circle">
             <div class="container-fluid h100">
                 <div class="box h100">
                     <div class="row h100">

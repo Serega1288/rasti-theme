@@ -79,9 +79,11 @@ p {
 .ts-128 { font-size: 12.8rem; line-height: 16.2rem; }
 .ts-96 { font-size: 9.6rem; line-height: 16.2rem; }
 .ts-64 { font-size: 6.4rem; } // header1
+.ts-43 { font-size: 4.3rem; }
 .ts-32  { font-size: 3.2rem; } // header2
 .ts-20 { font-size: 2rem; } // body
 .ts-16 { font-size: 1.6rem; } // capt
+.ts-14 { font-size: 1.4rem; line-height: 1.3rem; }
 .ts-12 { font-size: 1.2rem; line-height: 1.3rem; }
 .ts-8 { font-size: 0.8rem; line-height: 1.3rem; }
 
@@ -89,8 +91,10 @@ p {
 @include max-width(sm) {
   .ts-sm-128 { font-size: 12.8rem; line-height: 16.2rem; }
   .ts-sm-96 { font-size: 9.6rem; line-height: 16.2rem; }
+  .ts-sm-84 { font-size: 8.4rem; line-height: 1; }
   .ts-sm-64 { font-size: 6.4rem; }
   .ts-sm-32 { font-size: 3.2rem; }
+  .ts-sm-24 { font-size: 2.4rem; }
   .ts-sm-20 { font-size: 2rem; }
   .ts-sm-16 { font-size: 1.6rem; }
   .ts-sm-14 { font-size: 1.4rem; }
@@ -110,4 +114,61 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   margin-bottom: 0;
   margin-top: 0;
+}
+
+.box-text {
+  .title {
+    margin-bottom: 3.2rem;
+    @include max-width(sm) {
+      margin-bottom: 2rem;
+    }
+  }
+  ul, ol {
+    margin-top: 0;
+    padding-left: 2rem;
+    font-size: 1.6rem;
+    @include max-width(sm) {
+      font-size: 1.4rem;
+    }
+    li::marker {
+      color: var(--green);
+    }
+  }
+  strong {
+    color: var(--green);
+  }
+  h1,h2,h3,h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: 3.2rem;
+    @include max-width(sm) {
+      font-size: 2.4rem;
+    }
+  }
+  h3 {
+    font-size: 2rem;
+    @include max-width(sm) {
+      font-size: 1.6rem;
+    }
+  }
+  h4 {
+    font-size: 1.8rem;
+    @include max-width(sm) {
+      font-size: 1.4rem;
+    }
+  }
+  p {
+    font-size: 1.6rem;
+    @include max-width(sm) {
+      font-size: 1.2rem;
+    }
+  }
+}
+@include max-width(sm) {
+  .wrap-link {
+    font-size: 1.2rem;
+  }
 }

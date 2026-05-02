@@ -8,39 +8,43 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php include 'head.php'; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<?php include 'preloader.php'; ?>
 <div class="site-shell">
 
     <div class="mobile-menu anim-05 js-mobile-menu">
         <div class="container-fluid h100">
             <div class="box h100">
-                <?php if ( has_nav_menu( 'header-mobile-menu' ) ) : ?>
-                    <?php
-                    wp_nav_menu([
-                            'theme_location' => 'header-mobile-menu',
-                            'menu' => '',
-                            'container' => '',
-                            'container_class' => '',
-                            'container_id' => '',
-                            'menu_class' => 'menu',
-                            'menu_id' => '',
-                            'echo' => true,
-                            'fallback_cb' => false,
-                            'before' => '',
-                            'after' => '',
-                            'link_before' => '',
-                            'link_after' => '',
-                            'items_wrap' => '<div class="menu menu-4 h100 d-flex align-items-center"><ul class="anim-025 d-flex align-items-center flex-column">%3$s</ul></div>',
-                            'depth' => 0,
-                            'walker' => '',
-                    ]);
-                    ?>
-                <?php endif; ?>
+                <div class="menu menu-4 h100 d-flex align-items-center">
+                    <ul class="anim-025 d-flex align-items-center flex-column">
+                        <?php if ( has_nav_menu( 'header-mobile-menu' ) ) : ?>
+                        <?php
+                        wp_nav_menu([
+                                'theme_location' => 'header-mobile-menu',
+                                'menu' => '',
+                                'container' => '',
+                                'container_class' => '',
+                                'container_id' => '',
+                                'menu_class' => 'menu',
+                                'menu_id' => '',
+                                'echo' => true,
+                                'fallback_cb' => false,
+                                'before' => '',
+                                'after' => '',
+                                'link_before' => '',
+                                'link_after' => '',
+                                'items_wrap' => '%3$s',
+                                'depth' => 0,
+                                'walker' => '',
+                        ]);
+                        ?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -73,8 +77,8 @@
                                     ?>
                                 <?php endif; ?>
                         </div>
-                        <div class="col-md-auto col-12 d-flex justify-content-between align-items-end align-items-sm-center">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="logo d-flex">
+                        <div class="col-md-auto col-12 d-flex justify-content-between align-items-center align-items-sm-center">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="logo d-flex js-logo-home-link">
                                 <svg width="220" height="34" viewBox="0 0 220 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M219.7 0.772461V32.4225H206.488V0.772461H219.7Z" fill="#BDFF7B"/>
                                     <path d="M32.6469 0.801071C39.6361 0.743837 45.5524 6.20963 45.4604 12.7629C45.4604 15.138 44.786 17.3129 43.4066 19.2302C42.0578 21.1476 40.2798 22.607 38.0727 23.5514L45.4604 32.4225H31.3901L25.0139 24.696H13.212V32.4225H0V0.772461H32.6469V0.801071ZM13.1814 10.0443V15.4242H29.3056C30.1026 15.4242 30.8076 15.1667 31.3594 14.6516C31.9418 14.1079 32.2177 13.4783 32.2177 12.7342C32.2177 11.2176 30.9302 10.0157 29.3056 10.0157H13.1814V10.0443Z" fill="#BDFF7B"/>
@@ -83,6 +87,12 @@
                                     <path d="M170.837 32.4516V10.8459H155.111V0.830078H199.744V10.8459H184.018V32.4516H170.806H170.837Z" fill="#BDFF7B"/>
                                 </svg>
                             </a>
+
+                            <div class="menu menu-1 d-flex d-md-none wrap-mobile-cart">
+                                <ul>
+                                    <?php project_theme_render_header_cart_count(); ?>
+                                </ul>
+                            </div>
 
                             <div class="burger js-burger d-inline-flex d-md-none">
                                 <span></span>

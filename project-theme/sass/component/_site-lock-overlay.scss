@@ -1,0 +1,76 @@
+@use "../mixins" as *;
+
+.site-lock-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5000;
+  opacity: 1 !important;
+  visibility: visible !important;
+  &[hidden] {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  .backdrop {
+
+  }
+  .panel {
+    background: rgba(123, 123, 123, 0.83);
+    border: 1px solid var(--green);
+    padding: 0 2.5rem 0rem;
+    width: 42rem;
+    height: 48.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 125%;
+      letter-spacing: 0.4px;
+    }
+  }
+  .eyebrow {
+
+  }
+  .title {
+    line-height: 125%;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.6rem;
+    font-size: 4.8rem;
+    @include max-width(sm) {
+      font-size: 3.6rem;
+    }
+  }
+  .title-sub {
+    margin-bottom: 0.6rem;
+  }
+  .message {
+    line-height: 125%;
+    letter-spacing: 0.32px;
+    margin-bottom: 3.6rem;
+  }
+  .timer {
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .preloader-counter {
+    font-size: 6.4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 22rem;
+    height: 7rem;
+    color: var(--white);
+    letter-spacing: 1.28px;
+    margin-top: 0;
+    :before, :after {
+      filter: none !important;
+    }
+  }
+  .preloader-dash {
+    opacity: 1;
+  }
+}
+

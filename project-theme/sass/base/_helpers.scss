@@ -3,7 +3,8 @@
 .anim-05, a, .a, a:before, a:after,
 .btn, .btn:before, .btn:after,
 .icon:after, .icon:after,
-button, svg, path
+button, button:after, button:before , svg, path, .product,
+.brackets:before, .brackets:after, .colapps-plus:before, .colapps-plus:after, .site-lock-overlay, .cart_item, .cart-notification
 {
   transition: all 0.5s ease;
 }

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(js|ts\\)$\")",
+      "Bash(git log:*)",
+      "Bash(node -e \":*)",
+      "Bash(grep -o \"document\\\\|window\\\\|jQuery\\\\|$\\\\|addEventListener\" \"C:\\\\work\\\\project\\\\rasti\\\\plugins-local\\\\wc-ukr-shipping\\\\assets\\\\js\\\\checkout2.min.js\")",
+      "Bash(npm install:*)"
+    ]
+  }
+}

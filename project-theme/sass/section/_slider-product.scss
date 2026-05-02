@@ -1,0 +1,187 @@
+@use '../mixins' as *;
+
+
+.slider-product {
+  overflow: hidden;
+  margin-top: 10rem;
+  .title {
+    letter-spacing: 0.064rem;
+    margin-bottom: 2rem;
+    line-height: 1;
+    @include max-width(sm) {
+      max-width: 21rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 2.1rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04rem;
+    }
+  }
+  .desc {
+    letter-spacing: 0.064rem;
+    margin-bottom: 0;
+    line-height: 1;
+    @include max-width(sm) {
+      max-width: 24rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 2rem;
+      letter-spacing: 0.024rem;
+      margin-bottom: 1rem;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  @include max-width(sm) {
+    margin-top: 6.5rem;
+  }
+
+  .swiper {
+    overflow: visible;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    .swiper-slide {
+      height: auto !important;
+      & > * {
+        height: 100% !important;
+      }
+      .product {
+        opacity: 0;
+        visibility: hidden;
+      }
+      &.swiper-slide-active .product ,
+      &.swiper-slide-next .product ,
+      &.swiper-slide-next + div .product  {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    .product {
+      height: 100% !important;
+    }
+  }
+
+}
+
+.slider-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 43rem;
+  width: 100%;
+  margin: 5rem auto 0;
+  @include max-width(sm) {
+    margin-top: 3rem;
+    max-width: 32rem;
+  }
+  button {
+    box-shadow: none;
+    border: none;
+    min-width: 3rem;
+    width: 3rem;
+    height: 3rem;
+    background: none;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    span {
+      width: 0;
+      height: 0;
+      border-top: 1.2rem solid transparent;
+      border-bottom: 1.2rem solid transparent;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      margin: auto;
+    }
+  }
+  .slider-prev {
+    span {
+      border-right: 1.5rem solid var(--green);
+    }
+    &.swiper-button-disabled {
+      span {
+        border-right: 1.5rem solid var(--gray);
+      }
+    }
+  }
+  .slider-next {
+    span {
+      border-left: 1.5rem solid var(--green);
+    }
+    &.swiper-button-disabled {
+      span {
+        border-left: 1.5rem solid var(--gray);
+      }
+    }
+  }
+}
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrap-slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 11.5rem;
+  width: 100%;
+  height: 3.2rem;
+  position: relative;
+  .border {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-left: 1px solid var(--green);
+      border-top: 1px solid var(--green);
+    }
+  }
+  .border-1 {
+    &:before {
+      left: 0;
+      top: 0;
+    }
+    &:after {
+      right: 0;
+      top: 0;
+      transform: rotate(90deg);
+    }
+  }
+  .border-2 {
+    &:before {
+      left: 0;
+      bottom: 0;
+      transform: rotate(270deg);
+    }
+    &:after {
+      right: 0;
+      bottom: 0;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.wrap-products-slider {
+  margin-top: 8rem;
+  @include max-width(sm) {
+    margin-top: 5rem;
+    max-width: 36.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

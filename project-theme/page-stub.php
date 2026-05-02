@@ -11,7 +11,7 @@ get_header('stub');
     <main id="swup" class="transition-fade" role="main">
         <?php if (have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
-                <section class="section section-stub section-first pos line-end">
+                <section class="section section-stub pos line-end">
                     <?php
                     $fon_block        = get_field('fon_block');
                     $fon_block_mobile = get_field('fon_block_mobile');
@@ -55,14 +55,14 @@ get_header('stub');
                                 <?php
                                 $title = get_field('big_title');
                                 if ( $title ) : ?>
-                                    <div class="title ts-128 ts-sm-96 t-white">
+                                    <div class="title ts-128 ts-sm-84 t-light-gray">
                                         <?php echo $title; ?>
                                     </div>
                                 <?php endif; ?>
                                 <?php
                                 $desc = get_field('desc');
                                 if ( $desc ) : ?>
-                                    <div class="decs ts-20 ts-sm-16 t-green">
+                                    <div class="decs ts-20 ts-sm-14 t-green">
                                         <?php echo $desc; ?>
                                     </div>
                                 <?php endif; ?>

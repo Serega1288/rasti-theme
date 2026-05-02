@@ -4,12 +4,20 @@
   //margin-top: 6rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  padding-top: 27rem;
-  padding-bottom: 6rem;
   position: relative;
+  .box {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+  .container-fluid > .box {
+    padding-top: 27rem;
+    padding-bottom: 6rem;
+  }
   @include max-width(sm) {
-    padding-top: 14rem;
-    padding-bottom: 3.2rem;
+    .container-fluid > .box {
+      padding-top: 14rem;
+      padding-bottom: 3.2rem;
+    }
   }
   @media (max-width: 400px){
     padding-left: 0;
@@ -17,6 +25,10 @@
   }
   .wrap-logo {
     margin: 0 auto 5.4rem;
+    @include max-width(sm) {
+      margin: 0 auto 3rem;
+      line-height: 1;
+    }
     svg {
       max-width: 54rem;
       display: block;
@@ -39,7 +51,7 @@
       /* start: footer background animation */
       transform-origin: center;
       will-change: transform, filter;
-      animation: footerFonDrift 24s ease-in-out infinite alternate;
+      //animation: footerFonDrift 24s ease-in-out infinite alternate;
       /* end: footer background animation */
       @include max-width(sm) {
         margin-top: 1rem;
@@ -89,6 +101,10 @@
 }
 .wrap-pay-img {
   margin-bottom: 1rem;
+  ul {
+    max-width: 480px;
+    width: 100%;
+  }
   @include max-width(sm) {
     margin-bottom: 0;
   }

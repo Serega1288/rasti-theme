@@ -1,0 +1,95 @@
+@use '../mixins' as *;
+
+.block-buy {
+  position: relative;
+  min-height: 78rem;
+  overflow: hidden;
+  .wrap {
+    width: 100%;
+  }
+  .wrap-img {
+    position: relative;
+    padding-bottom: 120%;
+    .wrap-img-link {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .btn {
+    max-width: 29rem;
+  }
+  .box {
+    padding-top: 22rem !important;
+    padding-bottom: 14rem;
+    @include max-width(md) {
+      padding-bottom: 16rem;
+    }
+    @include max-width(sm) {
+      padding-top: 7.5rem !important;
+      padding-bottom: 10rem;
+    }
+    @media (max-width: 400px){
+      padding-top: 8.5rem !important;
+    }
+  }
+  .box-1 {
+    max-width: 48rem;
+    padding-left: 4.6rem;
+    padding-right: 4.6rem;
+    text-align: justify;
+    @media (max-width: 400px){
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .text-1 {
+      @include max-width(sm) {
+        max-width: 29rem;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        letter-spacing: 0.32px;
+      }
+    }
+    strong {
+      color: var(--green);
+    }
+  }
+  .box-2 {
+    max-width: calc(98rem + 4rem * 2);
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    @include max-width(sm) {
+      text-align: center;
+      margin-top: 12.5rem;
+      margin-top: 0;
+    }
+    @media (max-width: 400px){
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .text-1 {
+
+  }
+  .text-2 {
+    letter-spacing: 0.4px;
+    max-width: 30em;
+    @include max-width(sm) {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 4rem;
+      line-height: 2.7rem;
+      max-width: 28rem;
+    }
+  }
+}

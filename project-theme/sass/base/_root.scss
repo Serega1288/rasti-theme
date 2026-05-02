@@ -10,40 +10,45 @@
   --color-logo: #8FFF68;
   --header-height: 13.5rem;
   @include max-width(md) {
-    --header-height: 8.5rem;
+    --header-height: 7.5rem;
   }
   @media (max-height: 600px) {
-    --header-height: 8.5rem;
+    --header-height: 7.5rem;
   }
  }
 
 .t-white {
   color: var(--white);
 }
+.t-light-gray {
+  color: var(--light-gray);
+}
 .t-green {
   color: var(--green);
 }
 
+
+
 body {
   .container {
     --bs-gutter-x: 2.4rem;
-    //@include max-width(xl) {
-      //--bs-gutter-x: 2.4rem;
-    //}
+    @include max-width(sm) {
+      --bs-gutter-x: 2.2rem;
+    }
   }
   .container-fluid {
     //max-width: 1440px;
     max-width: calc(1180px + 2.4rem * 2);
     --bs-gutter-x: 2.4rem;
-    //@include max-width(xxl) {
-      //--bs-gutter-x: 1.6rem;
-    //}
+    @include max-width(sm) {
+      --bs-gutter-x: 2.2rem;
+    }
   }
   .row {
     --bs-gutter-y: 0;
     --bs-gutter-x: 2.4rem;
-    @include max-width(xxl) {
-      //--bs-gutter-x: 0.8rem;
+    @include max-width(sm) {
+      --bs-gutter-x: 2.2rem;
     }
   }
 }

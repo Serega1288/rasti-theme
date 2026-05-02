@@ -11,17 +11,28 @@
 // 3. global
 @use 'global/typography';
 @use 'base/helpers';
-@use 'section/global-section';
 
 // 4. Компонент
 @use 'component/animate';
 @use 'component/menu';
 @use 'component/btn';
 @use 'component/form';
+@use 'component/product-item';
+@use 'component/woocommerce-notices';
+@use 'component/site-lock-overlay';
 
 //5. Секції
+@use 'section/global-section';
 @use 'section/header';
 @use 'section/footer';
+@use 'section/slider-product';
+@use 'section/banner-promo';
+@use 'section/block-buy';
+@use 'section/woocommerce-product-gallery';
+@use 'section/woocommerce-product-summary';
+@use 'section/woocommerce-page-cart';
+@use 'section/woocommerce-page-checkout';
+
 //@use 'base/helpers';
 //@use 'base/typography';
 //@use 'base/fancybox';

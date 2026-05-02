@@ -1,0 +1,113 @@
+@use '../mixins' as *;
+
+.woocommerce-notices-wrapper {
+  //position: fixed;
+  //bottom: 0;
+  //left: 0;
+  //right: 0;
+  //z-index: 9999;
+}
+.woocommerce-NoticeGroup {
+
+}
+.page-template-page-checkout .woocommerce-notices-wrapper {
+  & > * {
+    margin-top: 7.5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
+.page-template-page-checkout {
+  .woocommerce-notice.woocommerce-notice--success.woocommerce-thankyou-order-received {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    & + .woocommerce-info {
+      display: none;
+    }
+  }
+  .woocommerce-form.woocommerce-form-login.login {
+    display: none !important;
+  }
+}
+
+.woocommerce-error {
+  //padding: 2rem 4rem;
+  //color: var(--white);
+  //background: darkred;
+
+  padding: 2rem 4rem;
+  background: var(--green);
+  border: 1px solid var(--green);
+  background: rgba(123, 123, 123, 0.60);
+  color: var(--white);
+  margin-bottom: 1rem;
+
+  li {
+    margin-left: 2rem;
+  }
+}
+
+.woocommerce-message, .cart-notification {
+  padding: 2rem 4rem;
+  background: var(--green);
+  border: 1px solid var(--green);
+  background: rgba(123, 123, 123, 0.60);
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.woocommerce-info {
+  //padding: 2rem 4rem;
+  //color: var(--green);
+  //background: var(--black-2);
+  padding: 2rem 4rem;
+  background: var(--green);
+  border: 1px solid var(--green);
+  background: rgba(123, 123, 123, 0.60);
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.cart-notification {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 15rem;
+  right: 0;
+  z-index: 999;
+  margin: auto;
+  max-width: 38rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  flex-direction: column;
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  @include max-width(sm) {
+    max-width: calc(100% - 2.2rem * 2 );
+  }
+}
+.cart-notification__close {
+  position: absolute !important;
+  top: 4.5rem;
+  right: 1.5rem;
+  box-shadow: none;
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+}
+
+.cart-notification__link {
+  margin-top: 0.5rem;
+  text-decoration: none;
+}

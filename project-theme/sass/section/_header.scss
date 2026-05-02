@@ -5,6 +5,28 @@
   height: 0;
   z-index: 10;
   position: relative;
+  .wrap-mobile-cart {
+    margin-right: 3rem;
+    margin-left: auto;
+    @media (max-width: 400px) {
+      a {
+        font-size: 1.4rem;
+        letter-spacing: normal;
+      }
+      .brackets {
+        &:before, &:after {
+          margin-left: .1rem;
+          margin-right: .1rem;
+        }
+      }
+    }
+    @include max-width(sm) {
+      margin-bottom: 0;
+    }
+    ul {
+      margin-top: 0;
+    }
+  }
   .header-1 {
     max-height: var(--header-height);
     position: fixed;
@@ -12,6 +34,7 @@
     left: 0;
     right: 0;
     z-index: 1;
+    height: 7.5rem;
   }
   .box {
     padding-left: 1.5rem;
@@ -20,6 +43,9 @@
   &.scroll {
     .header-1 {
       max-height: 8.5rem;
+      @include max-width(sm) {
+        max-height: 6.5rem;
+      }
       .logo {
         //margin-bottom: 2rem;
       }
@@ -43,14 +69,17 @@
   }
   .logo {
     @include max-width(sm) {
-      margin-bottom: 2rem;
+      margin-bottom: 0;
     }
     svg {
       width: 22rem;
       height: 3.4rem;
       @include max-width(sm) {
-        width: 17rem;
+        width: 12rem;
         height: 2.5rem;
+      }
+      @media (max-width: 400px) {
+        width: 12rem;
       }
     }
   }
@@ -99,3 +128,33 @@
   }
 }
 //***********
+
+.scroll-top-button {
+  cursor: pointer;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.2rem;
+  min-height: 5.2rem;
+  padding: 1rem 1.4rem;
+  border: .1rem solid var(--green);
+  background-color: rgba(0, 8, 13, 0.88);
+  color: var(--green);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .3s ease, visibility .3s ease;
+  @include max-width(sm) {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
