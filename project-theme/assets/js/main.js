@@ -1586,7 +1586,7 @@ jQuery(document).ready(function ($) {
 
         console.log('>>>>>>' );
 
-        if ( $(this).parents('.menu').hasClass('menu-4') ) {
+        if ( $(this).parents('.menu').hasClass('menu-4') || $(this).parents('.menu').hasClass('menu-1') ) {
             setTimeout(function () {
                 $('body').removeClass('ovh');
                 $('.js-burger').removeClass('is-active');

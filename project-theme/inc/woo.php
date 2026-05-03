@@ -8,12 +8,6 @@ function project_theme_setup_woocommerce_support(): void {
     remove_theme_support( 'wc-product-gallery-slider' );
 }
 
-add_filter( 'woocommerce_email_classes', 'project_theme_register_payment_confirmation_email' );
-function project_theme_register_payment_confirmation_email( array $email_classes ): array {
-    require_once get_stylesheet_directory() . '/inc/class-payment-confirmation-email.php';
-    $email_classes['Project_Theme_Payment_Confirmation_Email'] = new Project_Theme_Payment_Confirmation_Email();
-    return $email_classes;
-}
 
 function project_theme_is_in_cart( int $product_id, int $variation_id = 0 ): bool {
     if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
@@ -826,18 +820,39 @@ function custom_override_checkout_fields($fields)
     $fields['billing']['billing_country']['priority'] = 5;
     $fields['billing']['billing_country']['class'][] = 'col-12';
 
+    $fields['billing']['billing_state']['placeholder'] = ( $fields['billing']['billing_state']['label'] ?: 'Область/Округ/Штат' ) . ' *';
+    $fields['billing']['billing_state']['label'] = '';
+    $fields['billing']['billing_state']['priority'] = 6;
+    $fields['billing']['billing_state']['class'][] = 'col-12';
+
+    $fields['billing']['billing_city']['placeholder'] =  'Місто/Село *';
+    $fields['billing']['billing_city']['label'] = '';
+    $fields['billing']['billing_city']['priority'] = 7;
+    $fields['billing']['billing_city']['class'][] = 'col-12';
+
+    $fields['billing']['billing_address_1']['placeholder'] = 'Вулиця *';
+    $fields['billing']['billing_address_1']['label'] = '';
+    $fields['billing']['billing_address_1']['priority'] = 8;
+    $fields['billing']['billing_address_1']['class'][] = 'col-12';
+
+    $fields['billing']['billing_postcode']['placeholder'] = 'Поштовий індекс *';
+    $fields['billing']['billing_postcode']['label'] = '';
+    $fields['billing']['billing_postcode']['priority'] = 9;
+    $fields['billing']['billing_postcode']['class'][] = 'col-12';
 
 
+//    billing_postcode_field
 
-    unset($fields['billing']['billing_address_1']);
+//    unset($fields['billing']['billing_address_1']);
     unset($fields['billing']['billing_address_2']);
-    unset($fields['billing']['billing_state']);
-    unset($fields['billing']['billing_city']);
-    unset($fields['billing']['billing_postcode']);
+//    unset($fields['billing']['billing_state']);
+//    unset($fields['billing']['billing_city']);
+//    unset($fields['billing']['billing_postcode']);
 
 
     return $fields;
 }
+
 
 
 /**
@@ -846,18 +861,43 @@ function custom_override_checkout_fields($fields)
  */
 add_filter('woocommerce_default_address_fields', function ($fields) {
 
-//    if (isset($fields['first_name'])) {
-//        $fields['first_name']['class'][] = 'col-12 col-sm-6';
-//        $fields['first_name']['placeholder'] = __('Unesite svoje ime','themehortiqa');
-//    }
+    $fields['first_name']['label'] = '';
+    $fields['first_name']['placeholder'] = 'Ім’я *';
+    $fields['first_name']['priority'] = 1;
+    $fields['first_name']['class'][] = 'col-12 col-sm-6';
 
-    // ====== Повторюємо Bootstrap-логіку з checkout ======
+    $fields['last_name']['label'] = '';
+    $fields['last_name']['placeholder'] = 'Прізвище *';
+    $fields['last_name']['priority'] = 2;
+    $fields['last_name']['class'][] = 'col-12 col-sm-6';
 
-    unset($fields['address_1']);
-    unset($fields['city']);
-    unset($fields['postcode']); 
+    $fields['country']['label'] = '';
+    $fields['country']['placeholder'] = 'Країна / Регіон';
+    $fields['country']['priority'] = 5;
+    $fields['country']['class'][] = 'col-12';
+
+//    $fields['state']['placeholder'] = $fields['state']['label'] . ' *';
+    $fields['state']['placeholder'] = ( $fields['state']['label'] ?: 'Область/Округ/Штат' ) . ' *';
+    $fields['state']['label'] = '';
+    $fields['state']['priority'] = 6;
+    $fields['state']['class'][] = 'col-12';
+
+    $fields['city']['placeholder'] = 'Місто/Село *';
+    $fields['city']['label'] = '';
+    $fields['city']['priority'] = 7;
+    $fields['city']['class'][] = 'col-12';
+
+    $fields['address_1']['placeholder'] = 'Вулиця' . ' *';
+    $fields['address_1']['label'] = '';
+    $fields['address_1']['priority'] = 8;
+    $fields['address_1']['class'][] = 'col-12';
+
+    $fields['postcode']['placeholder'] = 'Поштовий індекс *';
+    $fields['postcode']['label'] = '';
+    $fields['postcode']['priority'] = 9;
+    $fields['postcode']['class'][] = 'col-12';
+
     unset($fields['address_2']);
-    unset($fields['state']);
 
     return $fields;
 }, 10, 1);

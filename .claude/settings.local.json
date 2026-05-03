@@ -11,7 +11,14 @@
       "Bash(find /c/work/project/rasti/project-theme -name *variation* -type f)",
       "Bash(find C:workprojectrasti -type f \\\\\\(-name *email* -o -name *mail* \\\\\\))",
       "Bash(grep -E \"\\\\.\\(php|html\\)$\")",
-      "Bash(grep -r \"added_to_cart\\\\|cart.*fragment\\\\|wc-ajax\" /c/work/project/rasti/project-theme/assets --include=*.js)"
+      "Bash(grep -r \"added_to_cart\\\\|cart.*fragment\\\\|wc-ajax\" /c/work/project/rasti/project-theme/assets --include=*.js)",
+      "Bash(wp --info)",
+      "Bash(ls C:/work/project/rasti/*.yml C:/work/project/rasti/*.yaml C:/work/project/rasti/docker*)",
+      "Bash(docker-compose -f C:/work/project/rasti/docker-compose.yml exec wp wp order list --status=processing,completed --limit=3 --fields=ID,status,billing_email)",
+      "Bash(docker compose:*)",
+      "Bash(cmd.exe /c \"docker --version\")",
+      "Bash(docker-compose ps:*)",
+      "Bash(where docker:*)"
     ]
   }
 }
