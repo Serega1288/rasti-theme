@@ -46,7 +46,15 @@ if ( $product->is_in_stock() ) : ?>
         do_action( 'woocommerce_after_add_to_cart_quantity' );
         ?>
 
-        <button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+        <?php $is_in_cart = function_exists( 'project_theme_is_in_cart' ) && project_theme_is_in_cart( $product->get_id() ); ?>
+        <button
+            type="submit"
+            name="add-to-cart"
+            value="<?php echo esc_attr( $product->get_id() ); ?>"
+            class="single_add_to_cart_button button alt<?php echo $is_in_cart ? ' is-in-cart added' : ''; ?><?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"
+            data-add-to-cart-text="<?php echo esc_attr( $product->single_add_to_cart_text() ); ?>"
+            <?php echo $is_in_cart ? 'disabled' : ''; ?>
+        ><?php echo $is_in_cart ? esc_html__( 'Вже в кошику', 'project-theme' ) : esc_html( $product->single_add_to_cart_text() ); ?></button>
 
         <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
     </form>

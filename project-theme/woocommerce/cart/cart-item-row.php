@@ -59,11 +59,16 @@ if ( $_product->is_sold_individually() ) {
     $min_quantity = 0;
     $max_quantity = $_product->get_max_purchase_quantity();
     $select_min   = max( 0, $min_quantity );
-    $select_max   = min( 10, $max_quantity > 0 ? $max_quantity : 10 );
-    $current_qty  = max( $select_min, min( (int) $cart_item['quantity'], $select_max ) );
+    $select_max   = $max_quantity > 0 ? $max_quantity : 100;
+    $current_qty  = (int) $cart_item['quantity'];
+    $qty_steps    = array_merge(
+        $select_min === 0 ? [ 0 ] : [],
+        range( max( 1, $select_min ), min( 20, $select_max ) ),
+        array_filter( [ 30, 40, 50, 60, 70, 80, 90, 100 ], fn( $v ) => $v >= $select_min && $v <= $select_max )
+    );
     $options_html = '';
 
-    for ( $quantity = $select_min; $quantity <= $select_max; $quantity++ ) {
+    foreach ( $qty_steps as $quantity ) {
         $options_html .= sprintf(
             '<option value="%1$d" %2$s>%1$d</option>',
             $quantity,

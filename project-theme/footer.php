@@ -65,7 +65,7 @@
                                 'walker' => '',
                         ]);
                         ?>
-                        <li><a href="mailto:support@rasti.com.ua">support@rasti.com.ua</a></li>
+<!--                        <li><a href="mailto:support@rasti.com.ua">support@rasti.com.ua</a></li>-->
                     </ul>
                 </div>
                 <div class="row">
@@ -85,11 +85,11 @@
                                 <ul class="flex-wrap d-flex align-items-center justify-content-between">
                                     <?php while( have_rows('list-payment', 'option') ) : the_row(); ?>
                                         <li>
-                                            <a href="<?php the_sub_field('link'); ?>" target="_blank">
+                                            <span>
                                                 <img class="lazy-img"
                                                      src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201%201%22%3E%3C%2Fsvg%3E"
                                                      data-src="<?php echo get_sub_field('logo')['url']; ?>">
-                                            </a>
+                                            </span>
                                         </li>
                                     <?php endwhile; ?>
                                 </ul>
@@ -98,7 +98,7 @@
 
                         <div class="menu menu-3 d-none d-md-block">
                             <ul class="d-flex align-items-center">
-                                <li><a href="mailto:support@rasti.com.ua">support@rasti.com.ua</a></li>
+<!--                                <li><a href="mailto:support@rasti.com.ua">support@rasti.com.ua</a></li>-->
                                 <?php
                                 wp_nav_menu([
                                         'theme_location' => 'footer-menu',

@@ -8,6 +8,40 @@ function project_theme_setup_woocommerce_support(): void {
     remove_theme_support( 'wc-product-gallery-slider' );
 }
 
+add_filter( 'woocommerce_email_classes', 'project_theme_register_payment_confirmation_email' );
+function project_theme_register_payment_confirmation_email( array $email_classes ): array {
+    require_once get_stylesheet_directory() . '/inc/class-payment-confirmation-email.php';
+    $email_classes['Project_Theme_Payment_Confirmation_Email'] = new Project_Theme_Payment_Confirmation_Email();
+    return $email_classes;
+}
+
+function project_theme_is_in_cart( int $product_id, int $variation_id = 0 ): bool {
+    if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+        return false;
+    }
+    foreach ( WC()->cart->get_cart() as $item ) {
+        if ( $variation_id > 0 ) {
+            if ( (int) $item['variation_id'] === $variation_id ) {
+                return true;
+            }
+        } else {
+            if ( (int) $item['product_id'] === $product_id && empty( $item['variation_id'] ) ) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+add_filter( 'woocommerce_add_to_cart_validation', 'project_theme_block_duplicate_cart_item', 10, 4 );
+function project_theme_block_duplicate_cart_item( bool $passed, int $product_id, int $quantity, int $variation_id = 0 ): bool {
+    if ( project_theme_is_in_cart( $product_id, $variation_id ) ) {
+        wc_add_notice( __( 'Цей товар вже є в кошику.', 'project-theme' ), 'error' );
+        return false;
+    }
+    return $passed;
+}
+
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 add_filter( 'thwvsf_enqueue_public_scripts', '__return_true' );
 add_filter( 'woocommerce_checkout_redirect_empty_cart', '__return_false' );
@@ -438,8 +472,37 @@ function project_theme_header_cart_count_fragment( array $fragments ): array {
     project_theme_render_header_cart_count();
     $fragments['li.cart-count'] = ob_get_clean();
 
+    $fragments['script#rasti-cart-ids'] = project_theme_render_cart_ids_script();
+
     return $fragments;
 }
+
+function project_theme_get_cart_ids(): array {
+    $product_ids   = [];
+    $variation_ids = [];
+    if ( function_exists( 'WC' ) && WC()->cart ) {
+        foreach ( WC()->cart->get_cart() as $item ) {
+            $product_ids[] = (int) $item['product_id'];
+            if ( ! empty( $item['variation_id'] ) ) {
+                $variation_ids[] = (int) $item['variation_id'];
+            }
+        }
+    }
+    return [
+        'productIds'   => array_values( array_unique( $product_ids ) ),
+        'variationIds' => array_values( array_unique( $variation_ids ) ),
+    ];
+}
+
+function project_theme_render_cart_ids_script(): string {
+    return '<script id="rasti-cart-ids" type="application/json">'
+        . wp_json_encode( project_theme_get_cart_ids() )
+        . '</script>';
+}
+
+add_action( 'wp_footer', function (): void {
+    echo project_theme_render_cart_ids_script(); // phpcs:ignore WordPress.Security.EscapeOutput
+} );
 
 add_filter( 'woocommerce_currency_symbol', 'project_theme_currency_symbol', 10, 2 );
 function project_theme_currency_symbol( string $currency_symbol, string $currency ): string {
@@ -466,6 +529,13 @@ function project_theme_handle_clear_cart_request(): void {
     exit;
 }
 
+
+add_action( 'wp_ajax_project_theme_get_cart_ids', 'project_theme_ajax_get_cart_ids' );
+add_action( 'wp_ajax_nopriv_project_theme_get_cart_ids', 'project_theme_ajax_get_cart_ids' );
+function project_theme_ajax_get_cart_ids(): void {
+    check_ajax_referer( 'rasti-theme-ajax', 'nonce' );
+    wp_send_json_success( project_theme_get_cart_ids() );
+}
 
 add_action( 'wp_ajax_project_theme_get_cart_count', 'project_theme_ajax_get_cart_count' );
 add_action( 'wp_ajax_nopriv_project_theme_get_cart_count', 'project_theme_ajax_get_cart_count' );
@@ -743,6 +813,7 @@ function custom_override_checkout_fields($fields)
     $fields['billing']['billing_phone']['label'] = '';
     $fields['billing']['billing_phone']['placeholder'] = 'Номер телефону *';
     $fields['billing']['billing_phone']['priority'] = 3;
+//    $fields['billing']['billing_phone']['required'] = true;
     $fields['billing']['billing_phone']['class'][] = 'col-12 col-sm-6';
 
     $fields['billing']['billing_email']['label'] = '';

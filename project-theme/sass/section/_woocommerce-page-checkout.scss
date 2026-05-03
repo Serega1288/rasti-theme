@@ -11,6 +11,14 @@
         bottom: -1000rem;
       }
     }
+    .box-1 {
+      ul[class="order_details"] {
+        margin: 2rem;
+        & + p {
+          margin: 2rem;
+        }
+      }
+    }
     .wrap-checkout {
       padding-top: 7.5rem;
       padding-left: 4rem;
@@ -107,17 +115,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  [for="payment_method_liqpay"] {
+    img {
+      display: none;
+    }
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
 
+    }
+  }
+  [for="payment_method_morkva-monopay"], [for="payment_method_wayforpay"] {
+    &:before {
+      background-image: url("/wp-content/plugins/mrkv-monobank-extended/includes/../assets/images/plata_light_bg.png");
+      z-index: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: auto 55%;
+    }
+  }
+  [for="payment_method_wayforpay"] {
+    &:before {
+      background-image: url("/wp-content/plugins/Word-Press-Woocommerce-master/assets/img/w4p.png");
+      background-size: auto 90%;
+    }
   }
   label {
-    img {
+    img, &:before {
       filter: brightness(0) invert(1);
     }
   }
   .btn:hover {
-    img {
+    img, label:before {
       filter: brightness(0);
     }
   }
@@ -127,7 +161,7 @@
       background-color: var(--green);
       color: var(--black);
       cursor: pointer;
-      img {
+      img, label:before {
         filter: brightness(0);
       }
       &:before, &:after {
