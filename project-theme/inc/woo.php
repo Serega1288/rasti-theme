@@ -447,14 +447,16 @@ function project_theme_render_variation_gallery_admin_script(): void {
 function project_theme_render_header_cart_count(): void {
     $cart_count = function_exists( 'WC' ) && WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
     $cart_url   = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/' );
-    $cart_label = $cart_count > 0 ? sprintf( '%02d', $cart_count ) : '';
+    $cart_label = $cart_count > 0 ? sprintf( '%02d', $cart_count ) : '0';
     ?>
     <li class="cart-count">
-        <a count="<?php echo $cart_count; ?>" class="brackets" href="<?php echo esc_url( $cart_url ); ?>">
-            Cart
-            <?php if ( $cart_count > 0 ) : ?>
-                <span><?php echo esc_html( $cart_label ); ?></span>
-            <?php endif; ?>
+        <a class="d-inline-flex align-items-center" count="<?php echo $cart_count; ?>" href="<?php echo esc_url( $cart_url ); ?>">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.5 3H3.25L4 6M4 6L6.5 16H19.5L22 6H4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.5 21C7.32843 21 8 20.3284 8 19.5C8 18.6716 7.32843 18 6.5 18C5.67157 18 5 18.6716 5 19.5C5 20.3284 5.67157 21 6.5 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.5 21C20.3284 21 21 20.3284 21 19.5C21 18.6716 20.3284 18 19.5 18C18.6716 18 18 18.6716 18 19.5C18 20.3284 18.6716 21 19.5 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span style="display: flex" class="brackets"><?php echo esc_html( $cart_label ); ?></span>
         </a>
     </li>
     <?php
@@ -497,6 +499,32 @@ function project_theme_render_cart_ids_script(): string {
 add_action( 'wp_footer', function (): void {
     echo project_theme_render_cart_ids_script(); // phpcs:ignore WordPress.Security.EscapeOutput
 } );
+
+add_action( 'wp_footer', function (): void {
+    $nonce    = wp_create_nonce( 'rasti-theme-ajax' );
+    $ajax_url = admin_url( 'admin-ajax.php' );
+    ?>
+    <script>
+    (function () {
+        fetch(<?php echo wp_json_encode( $ajax_url ); ?>, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'action=project_theme_get_cart_count&nonce=<?php echo esc_js( $nonce ); ?>'
+        })
+        .then( function ( r ) { return r.json(); } )
+        .then( function ( data ) {
+            if ( ! data.success || ! data.data.cartCountHtml ) return;
+            var tmp = document.createElement( 'div' );
+            tmp.innerHTML = data.data.cartCountHtml;
+            var newEl = tmp.querySelector( 'li.cart-count' );
+            var oldEl = document.querySelector( 'li.cart-count' );
+            if ( oldEl && newEl ) oldEl.parentNode.replaceChild( newEl, oldEl );
+        } )
+        .catch( function () {} );
+    } )();
+    </script>
+    <?php
+}, 20 );
 
 add_filter( 'woocommerce_currency_symbol', 'project_theme_currency_symbol', 10, 2 );
 function project_theme_currency_symbol( string $currency_symbol, string $currency ): string {

@@ -1408,7 +1408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const swup = new Swup({
             containers: ['#swup'],
-            linkSelector: 'a[href]:not([data-no-swup]):not([data-fancybox])',
+            linkSelector: 'a[href]:not([data-no-swup]):not([data-fancybox]):not(.checkout-button)',
             plugins: swupPlugins,
         });
 
@@ -1565,6 +1565,13 @@ jQuery(document).ready(function ($) {
             }
         });
     };
+
+    // if (window.rastiSwup?.hooks && typeof window.rastiSwup.hooks.on === 'function') {
+    //     window.rastiSwup.hooks.on('page:view', refreshHeaderCartCount);
+    // }
+
+    refreshHeaderCartCount();
+
 
     setTimeout(function () {
         $('[aria-current="page"]:not([href="/#go-book"]):not([href="/#go-catalog"])').addClass('js-active');

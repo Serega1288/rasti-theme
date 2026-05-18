@@ -18,7 +18,11 @@
       "Bash(docker compose:*)",
       "Bash(cmd.exe /c \"docker --version\")",
       "Bash(docker-compose ps:*)",
-      "Bash(where docker:*)"
+      "Bash(where docker:*)",
+      "Bash(grep -r \"swup\" /c/work/project/rasti/project-theme/inc/*.php)",
+      "Bash(find C:/work/project/rasti -path */woocommerce/cart/proceed-to-checkout-button.php)",
+      "Bash(find C:/work/project/rasti -name proceed-to-checkout-button.php -not -path */project-theme/*)",
+      "Bash(find C:/work/project/rasti -path */plugins/woocommerce/templates/cart* -name *.php)"
     ]
   }
 }

@@ -3,6 +3,8 @@
 require_once get_stylesheet_directory() . '/inc/enqueue.php';
 // всі скрипти теми
 require_once get_stylesheet_directory() . '/inc/theme-admin.php';
+// безпека, закриваємо функції
+require_once get_stylesheet_directory() . '/inc/plugin-management-lock.php';
 // розміри картинок
 require_once get_stylesheet_directory() . '/inc/image.php';
 // плагін ACF
@@ -11,6 +13,10 @@ require_once get_stylesheet_directory() . '/inc/acf.php';
 require_once get_stylesheet_directory() . '/inc/site-lock.php';
 // вукомерс
 require_once get_stylesheet_directory() . '/inc/woo.php';
+
+add_filter( 'project_theme_skip_preloader', function ( bool $skip ): bool {
+    return $skip || is_checkout();
+} );
 // підтвердження оплати — email при статусі "в обробці"
 add_filter( 'woocommerce_email_classes', function ( array $email_classes ): array {
     require_once get_stylesheet_directory() . '/inc/class-payment-confirmation-email.php';
@@ -25,5 +31,15 @@ add_action( 'woocommerce_order_status_changed', function ( int $order_id, string
     require_once get_stylesheet_directory() . '/inc/class-payment-confirmation-email.php';
     ( new Project_Theme_Payment_Confirmation_Email() )->trigger( $order_id, $order );
 }, 20, 4 );
+// WP Rocket: не відкладати cart-fragments щоб кошик оновлювався миттєво
+add_filter( 'rocket_delay_js_exclusions', function ( array $exclusions ): array {
+    $exclusions[] = 'cart-fragments';
+    return $exclusions;
+} );
+add_filter( 'rocket_excluded_defer_src', function ( array $exclusions ): array {
+    $exclusions[] = 'cart-fragments';
+    return $exclusions;
+} );
+
 // режим заглушки
 require_once get_stylesheet_directory() . '/brackets.php';

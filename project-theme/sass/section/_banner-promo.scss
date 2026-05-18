@@ -6,7 +6,9 @@
   max-height: calc(100vh - 2px);
   //min-height: 100vh;
   @include max-width(sm) {
-    max-height: calc(100vh);
+    //max-height: calc(100vh);
+    //max-height: 56rem;
+    max-height: 100%;
     &:not(.banner-promo).line-end {
       border: none !important;
     }
@@ -67,7 +69,7 @@
       //min-height: calc(56rem + var(--header-height) + 19rem);
       min-height: calc(100vh - var(--header-height));
       //padding-bottom: 16.5rem;
-      ppadding-bottom: 12rem;
+      //padding-bottom: 12rem;
       padding-bottom: 40%;
       //padding-bottom: 15vh;
       //padding-top: 100%;
